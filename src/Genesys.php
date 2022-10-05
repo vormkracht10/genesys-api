@@ -6,23 +6,53 @@ use Illuminate\Support\Facades\Http;
 
 class Genesys
 {
-    private $clientId;
+    private string $clientId;
 
-    private $clientSecret;
+    private string $clientSecret;
 
-    private $accessToken;
+    private string $accessToken;
 
-    private $refreshToken;
+    private string $refreshToken;
 
-    private $redirectUrl;
+    private string $redirectUrl;
 
-    private $loginUrl;
+    private string $region;
 
-    private $region;
+    private string $appUrl;
 
-    public function __construct()
+    private string $loginUrl;
+
+    private string $apiUrl;
+
+    public function __construct(string $region)
     {
-        //
+        $this->region = $region;
+        $this->setUrls($region);
+    }
+
+    private function setUrls(string $region)
+    {
+        $appUrl = 'https://apps.mypurecloud.';
+        $loginUrl = 'https://login.mypurecloud.';
+        $apiUrl = 'https://api.mypurecloud.';
+
+        switch ($region) {
+            case 'jp':
+                $this->appUrl = $loginUrl . 'jp';
+                $this->loginUrl = $appUrl . 'jp';
+                $this->apiUrl = $apiUrl . 'jp' . '/api/v2';
+                break;
+            case 'us':
+                $this->appUrl = $loginUrl . 'com';
+                $this->loginUrl = $appUrl . 'com';
+                $this->apiUrl = $apiUrl . 'com' . '/api/v2';
+                break;
+            default:
+                $this->appUrl = $loginUrl . 'com';
+                $this->loginUrl = $appUrl . 'com';
+                $this->apiUrl = $apiUrl . 'com' . '/api/v2';
+                break;
+        }
     }
 
     public function setClientId(string $clientId): void
@@ -105,7 +135,7 @@ class Genesys
             'scope' => '',
         ]);
 
-        return 'https://login.mypurecloud.com' . '/oauth/authorize?' . $query;
+        return $this->getLoginUrl() . '/oauth/authorize?' . $query;
     }
 
     public function requestAccessToken(string $code): string
