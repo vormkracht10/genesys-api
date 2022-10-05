@@ -105,7 +105,7 @@ class Genesys
     public function setRedirectUrl(string $redirectUrl): self
     {
         $this->redirectUrl = $redirectUrl;
-        
+
         return $this;
     }
 
