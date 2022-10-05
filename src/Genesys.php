@@ -55,9 +55,11 @@ class Genesys
         }
     }
 
-    public function setClientId(string $clientId): void
+    public function setClientId(string $clientId): self
     {
         $this->clientId = $clientId;
+
+        return $this;
     }
 
     public function getClientId(): string
@@ -65,9 +67,11 @@ class Genesys
         return $this->clientId;
     }
 
-    public function setClientSecret(string $clientSecret): void
+    public function setClientSecret(string $clientSecret): self
     {
         $this->clientSecret = $clientSecret;
+
+        return $this;
     }
 
     public function getClientSecret(): string
@@ -95,9 +99,11 @@ class Genesys
         return $this->refreshToken;
     }
 
-    public function setRedirectUrl(string $redirectUrl): void
+    public function setRedirectUrl(string $redirectUrl): self
     {
         $this->redirectUrl = $redirectUrl;
+        
+        return $this;
     }
 
     public function getRedirectUrl(): string
@@ -135,7 +141,7 @@ class Genesys
             'scope' => '',
         ]);
 
-        return $this->getLoginUrl() . '/oauth/authorize?' . $query;
+        return $this->loginUrl . '/oauth/authorize?' . $query;
     }
 
     public function requestAccessToken(string $code): string
