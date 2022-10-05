@@ -6,14 +6,14 @@ use Illuminate\Support\Facades\Http;
 
 class Genesys
 {
-    private $clientId; 
+    private $clientId;
 
     private $clientSecret;
 
     private $accessToken;
 
     private $refreshToken;
-    
+
     private $redirectUrl;
 
     private $loginUrl;
