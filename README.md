@@ -28,7 +28,7 @@ composer require vormkracht10/genesys-api
 ## Usage
 
 ```php
-$skeleton = new Vormkracht10\GenesysApi();
+$skeleton = new Vormkracht10\Genesys();
 echo $skeleton->echoPhrase('Hello, Vormkracht10!');
 ```
 

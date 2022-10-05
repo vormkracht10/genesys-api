@@ -2,6 +2,6 @@
 
 namespace Vormkracht10\GenesysApi;
 
-class GenesysApiClass
+class Genesys
 {
 }
