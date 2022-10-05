@@ -4,14 +4,14 @@ namespace Vormkracht10\GenesysApi;
 
 class Genesys
 {
-    private $clientId; 
+    private $clientId;
 
     private $clientSecret;
 
     private $accessToken;
 
     private $refreshToken;
-    
+
     private $redirectUrl;
 
     private $client;
@@ -98,6 +98,6 @@ class Genesys
 
     public function requestAccessToken($code)
     {
-        // 
+        //
     }
 }
