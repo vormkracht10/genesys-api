@@ -187,8 +187,8 @@ class Genesys
         $response = Http::asForm()
             ->post($this->getLoginUrl() . '/oauth/token', [
                 'grant_type' => 'client_credentials',
-                'client_id' => $this->getClientId(),
-                'client_secret' => $this->getClientSecret(),
+                'client_id' => $this->clientId,
+                'client_secret' => $this->clientSecret,
                 'scope' => '',
             ])
             ->throw()
