@@ -41,16 +41,19 @@ class Genesys
                 $this->appUrl = $loginUrl . 'jp';
                 $this->loginUrl = $appUrl . 'jp';
                 $this->apiUrl = $apiUrl . 'jp' . '/api/v2';
+
                 break;
             case 'us':
                 $this->appUrl = $loginUrl . 'com';
                 $this->loginUrl = $appUrl . 'com';
                 $this->apiUrl = $apiUrl . 'com' . '/api/v2';
+
                 break;
             default:
                 $this->appUrl = $loginUrl . 'com';
                 $this->loginUrl = $appUrl . 'com';
                 $this->apiUrl = $apiUrl . 'com' . '/api/v2';
+
                 break;
         }
     }
