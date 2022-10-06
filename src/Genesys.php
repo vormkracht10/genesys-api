@@ -2,7 +2,7 @@
 
 namespace Vormkracht10\GenesysApi;
 
-use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Client\PendingRequest as Http;
 
 class Genesys
 {
@@ -24,9 +24,13 @@ class Genesys
 
     private string $apiUrl;
 
+    public Http $http;
+
     public function __construct(string $region)
     {
         $this->region = $region;
+        $this->http = new Http();
+
         $this->setUrls($region);
     }
 
@@ -149,7 +153,7 @@ class Genesys
 
     public function requestAccessToken(string $code): string
     {
-        $response = Http::asForm()
+        $response = $this->http->asForm()
             ->withBasicAuth(
                 $this->getClientId(),
                 $this->getClientSecret()
@@ -168,7 +172,7 @@ class Genesys
 
     public function requestAccesTokenWithRefreshToken(string $refreshToken): string
     {
-        $response = Http::asForm()
+        $response = $this->http->asForm()
             ->withBasicAuth(
                 $this->getClientId(),
                 $this->getClientSecret()
@@ -187,8 +191,8 @@ class Genesys
     /** @todo not sure if we need this, need confirmation. */
     public function requestApiToken()
     {
-        $response = Http::asForm()
-            ->post($this->getLoginUrl() . '/oauth/token', [
+        $response = $this->http->asForm()
+            ->post($this->loginUrl . '/oauth/token', [
                 'grant_type' => 'client_credentials',
                 'client_id' => $this->clientId,
                 'client_secret' => $this->clientSecret,
