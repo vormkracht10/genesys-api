@@ -2,8 +2,8 @@
 
 namespace Vormkracht10\GenesysApi;
 
-use Illuminate\Http\Client\PendingRequest as Http;
-
+// Import the HHTP client from guzzle
+use GuzzleHttp\Client;
 class Genesys
 {
     private string $clientId;
@@ -24,12 +24,12 @@ class Genesys
 
     private string $apiUrl;
 
-    public Http $http;
+    public Client $client;
 
     public function __construct(string $region)
     {
         $this->region = $region;
-        $this->http = new Http();
+        $this->client = new Client();
 
         $this->setUrls($region);
     }
@@ -42,20 +42,20 @@ class Genesys
 
         switch ($region) {
             case 'jp':
-                $this->appUrl = $loginUrl . 'jp';
-                $this->loginUrl = $appUrl . 'jp';
+                $this->appUrl = $appUrl . 'jp';
+                $this->loginUrl = $loginUrl . 'jp';
                 $this->apiUrl = $apiUrl . 'jp' . '/api/v2';
 
                 break;
             case 'us':
-                $this->appUrl = $loginUrl . 'com';
-                $this->loginUrl = $appUrl . 'com';
+                $this->appUrl = $appUrl . 'com';
+                $this->loginUrl = $loginUrl . 'com';
                 $this->apiUrl = $apiUrl . 'com' . '/api/v2';
 
                 break;
             default:
-                $this->appUrl = $loginUrl . 'com';
-                $this->loginUrl = $appUrl . 'com';
+                $this->appUrl = $appUrl . 'com';
+                $this->loginUrl = $loginUrl . 'com';
                 $this->apiUrl = $apiUrl . 'com' . '/api/v2';
 
                 break;
@@ -153,7 +153,7 @@ class Genesys
 
     public function requestAccessToken(string $code): string
     {
-        $response = $this->http->asForm()
+        $response = $this->client->asForm()
             ->withBasicAuth(
                 $this->getClientId(),
                 $this->getClientSecret()
@@ -172,9 +172,9 @@ class Genesys
 
     public function requestAccesTokenWithRefreshToken(string $refreshToken): string
     {
-        $response = $this->http->asForm()
+        $response = $this->client->asForm()
             ->withBasicAuth(
-                $this->getClientId(),
+                $this->clientId(),
                 $this->getClientSecret()
             )->post($this->getLoginUrl() . '/oauth/token', [
                 'grant_type' => 'refresh_token',
@@ -191,16 +191,20 @@ class Genesys
     /** @todo not sure if we need this, need confirmation. */
     public function requestApiToken()
     {
-        $response = $this->http->asForm()
-            ->post($this->loginUrl . '/oauth/token', [
-                'grant_type' => 'client_credentials',
-                'client_id' => $this->clientId,
-                'client_secret' => $this->clientSecret,
-                'scope' => '',
+        $response = $this->client->post($this->loginUrl . '/oauth/token', [
+                'form_params' => [
+                    'grant_type' => 'client_credentials',
+                    'client_id' => $this->clientId,
+                    'client_secret' => $this->clientSecret,
+                    'scope' => '',
+                ],
             ])
+
+
+
             ->throw()
             ->json();
 
-        $this->setAccessToken($response['access_token']);
+        // $this->setAccessToken($response['access_token']);
     }
 }
