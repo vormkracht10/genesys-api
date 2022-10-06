@@ -4,6 +4,7 @@ namespace Vormkracht10\GenesysApi;
 
 // Import the HHTP client from guzzle
 use GuzzleHttp\Client;
+
 class Genesys
 {
     private string $clientId;
