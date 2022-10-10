@@ -131,7 +131,7 @@ class Genesys
             'scope' => '',
         ]);
 
-        return $this->loginUrl . '/oauth/authorize?' . $query;
+        return $this->getLoginUrl() . '/oauth/authorize?' . $query;
     }
 
     public function requestAccessToken(string $code): array
