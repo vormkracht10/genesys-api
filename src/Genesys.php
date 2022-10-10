@@ -16,8 +16,6 @@ class Genesys
 
     private string $redirectUrl;
 
-    private string $region;
-
     private string $appUrl = 'https://api.mypurecloud.';
 
     private string $loginUrl = 'https://login.mypurecloud.';
