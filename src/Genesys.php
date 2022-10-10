@@ -3,6 +3,7 @@
 namespace Vormkracht10\GenesysApi;
 
 use GuzzleHttp\Client;
+
 class Genesys
 {
     private string $clientId;
