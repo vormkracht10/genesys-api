@@ -50,6 +50,7 @@ class Genesys
             case 'jp':
                 $this->setUrls($this->appUrl . 'jp', $this->loginUrl . 'jp', $this->apiUrl . 'jp');
                 break; 
+                
             case 'us':
             default:
                 $this->setUrls($this->appUrl . 'com', $this->loginUrl . 'com', $this->apiUrl . 'com');
