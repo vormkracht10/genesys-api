@@ -121,7 +121,6 @@ class Genesys
         return $this->loginUrl;
     }
 
-    /** @todo based on the region the correct auth url should be returned. */
     public function getAuthorizationUrl(): string
     {
         $query = http_build_query([
@@ -177,7 +176,6 @@ class Genesys
         return $response;
     }
 
-    /** @todo not sure if we need this, need confirmation. */
     public function requestApiToken(): array
     {
         $response = $this->client->post($this->getLoginUrl() . '/oauth/token', [
