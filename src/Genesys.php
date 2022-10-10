@@ -2,7 +2,6 @@
 
 namespace Vormkracht10\GenesysApi;
 
-// Import the HHTP client from guzzle
 use GuzzleHttp\Client;
 class Genesys
 {
@@ -32,6 +31,11 @@ class Genesys
         $this->client = new Client();
 
         $this->setUrls($region);
+    }
+
+    public static function api(string $region): Genesys
+    {
+        return new Genesys($region);
     }
 
     private function setUrls(string $region)
@@ -198,12 +202,14 @@ class Genesys
                     'client_secret' => $this->clientSecret,
                     'scope' => '',
                 ],
-            ])
+            ]);
+        
+        return $response->getBody()->getContents();
 
 
 
-            ->throw()
-            ->json();
+            // ->throw()
+            // ->json();
 
         // $this->setAccessToken($response['access_token']);
     }
