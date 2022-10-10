@@ -1,21 +1,10 @@
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/support-ukraine.svg?t=1" />](https://supportukrainenow.org)
-
-# PHP Genesys API 
+# PHP Genesys API
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/vormkracht10/genesys-api.svg?style=flat-square)](https://packagist.org/packages/vormkracht10/genesys-api)
 [![Tests](https://github.com/vormkracht10/genesys-api/actions/workflows/run-tests.yml/badge.svg?branch=main)](https://github.com/vormkracht10/genesys-api/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/vormkracht10/genesys-api.svg?style=flat-square)](https://packagist.org/packages/vormkracht10/genesys-api)
 
-This is where your description should go. Try and limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/genesys-api.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/genesys-api)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+This package is a PHP wrapper for the [Genesys](https://www.genesys.com/) API. The package provides a fluent syntax to interact with the API.
 
 ## Installation
 
@@ -28,8 +17,14 @@ composer require vormkracht10/genesys-api
 ## Usage
 
 ```php
-$skeleton = new Vormkracht10\GenesysApi();
-echo $skeleton->echoPhrase('Hello, Vormkracht10!');
+use Vormkracht10\GenesysApi\Genesys;
+
+$genesys = Genesys::api(region: 'us')
+  ->setClientId('here-goes-your-client-id')
+  ->setClientSecret('here-goes-your-client-secret')
+  ->setRedirectUrl('https://example.com/redirect');
+
+$genesys->requestApiToken();
 ```
 
 ## Testing
@@ -52,8 +47,8 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [Bas van Dinther](https://github.com/vormkracht10)
-- [All Contributors](../../contributors)
+-   [Bas van Dinther](https://github.com/vormkracht10)
+-   [All Contributors](../../contributors)
 
 ## License
 
