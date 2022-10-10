@@ -204,13 +204,13 @@ class Genesys
                     'scope' => '',
                 ],
             ]);
-        
+
         return $response->getBody()->getContents();
 
 
 
-            // ->throw()
-            // ->json();
+        // ->throw()
+        // ->json();
 
         // $this->setAccessToken($response['access_token']);
     }
