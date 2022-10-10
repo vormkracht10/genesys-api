@@ -18,11 +18,11 @@ class Genesys
 
     private string $region;
 
-    private string $appUrl;
+    private string $appUrl = 'https://api.mypurecloud.';
 
-    private string $loginUrl;
+    private string $loginUrl = 'https://login.mypurecloud.';
 
-    private string $apiUrl;
+    private string $apiUrl = 'https://api.mypurecloud.';
 
     public Client $client;
 
@@ -31,7 +31,7 @@ class Genesys
         $this->region = $region;
         $this->client = new Client();
 
-        $this->setUrls($region);
+        $this->createUrlsForRegion($region);
     }
 
     public static function api(string $region): Genesys
@@ -39,32 +39,20 @@ class Genesys
         return new Genesys($region);
     }
 
-    private function setUrls(string $region)
+    private function createUrlsForRegion(string $region): void
     {
-        $appUrl = 'https://apps.mypurecloud.';
-        $loginUrl = 'https://login.mypurecloud.';
-        $apiUrl = 'https://api.mypurecloud.';
+        match ($region) {
+            'eu' => $this->setUrls($this->appUrl . 'eu', $this->loginUrl . 'eu', $this->apiUrl . 'eu'),
+            'jp' => $this->setUrls($this->appUrl . 'jp', $this->loginUrl . 'jp', $this->apiUrl . 'jp'),
+            'us' => $this->setUrls($this->appUrl . 'com', $this->loginUrl . 'com', $this->apiUrl . 'com'),
+        };
+    }
 
-        switch ($region) {
-            case 'jp':
-                $this->appUrl = $appUrl . 'jp';
-                $this->loginUrl = $loginUrl . 'jp';
-                $this->apiUrl = $apiUrl . 'jp' . '/api/v2';
-
-                break;
-            case 'us':
-                $this->appUrl = $appUrl . 'com';
-                $this->loginUrl = $loginUrl . 'com';
-                $this->apiUrl = $apiUrl . 'com' . '/api/v2';
-
-                break;
-            default:
-                $this->appUrl = $appUrl . 'com';
-                $this->loginUrl = $loginUrl . 'com';
-                $this->apiUrl = $apiUrl . 'com' . '/api/v2';
-
-                break;
-        }
+    private function setUrls(string $appUrl, string $loginUrl, string $apiUrl): void
+    {
+        $this->appUrl = $appUrl;
+        $this->loginUrl = $loginUrl;
+        $this->apiUrl = $apiUrl . '/api/v2';
     }
 
     public function setClientId(string $clientId): self
@@ -194,7 +182,7 @@ class Genesys
     }
 
     /** @todo not sure if we need this, need confirmation. */
-    public function requestApiToken()
+    public function requestApiToken(): array
     {
         $response = $this->client->post($this->loginUrl . '/oauth/token', [
                 'form_params' => [
@@ -203,15 +191,14 @@ class Genesys
                     'client_secret' => $this->clientSecret,
                     'scope' => '',
                 ],
-            ]);
-        
-        return $response->getBody()->getContents();
+            ])
+            ->getBody()
+            ->getContents();
 
+        $response = json_decode($response, true);
 
+        $this->setAccessToken($response['access_token']);
 
-            // ->throw()
-            // ->json();
-
-        // $this->setAccessToken($response['access_token']);
+        return $response;
     }
 }
