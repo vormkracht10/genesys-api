@@ -24,8 +24,7 @@ class Genesys
 
     private string $apiUrl = 'https://api.mypurecloud.';
 
-    /** @var Client $client  */
-    public Client $client;
+    private Client $client;
 
     public function __construct(string $region)
     {
@@ -50,7 +49,7 @@ class Genesys
             case 'jp':
                 $this->setUrls($this->appUrl . 'jp', $this->loginUrl . 'jp', $this->apiUrl . 'jp');
                 break; 
-                
+
             case 'us':
             default:
                 $this->setUrls($this->appUrl . 'com', $this->loginUrl . 'com', $this->apiUrl . 'com');
