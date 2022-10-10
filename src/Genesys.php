@@ -121,16 +121,6 @@ class Genesys
         return $this->loginUrl;
     }
 
-    public function setRegion(string $region): void
-    {
-        $this->region = $region;
-    }
-
-    public function getRegion(): string
-    {
-        return $this->region;
-    }
-
     /** @todo based on the region the correct auth url should be returned. */
     public function getAuthorizationUrl(): string
     {
@@ -144,56 +134,62 @@ class Genesys
         return $this->loginUrl . '/oauth/authorize?' . $query;
     }
 
-    public function requestAccessToken(string $code): string
+    public function requestAccessToken(string $code): array
     {
-        $response = $this->client->asForm()
-            ->withBasicAuth(
+        $response = $this->client->post($this->getLoginUrl() . '/oauth/token', [
+            'auth' => [
                 $this->getClientId(),
-                $this->getClientSecret()
-            )->post($this->getLoginUrl() . '/oauth/token', [
-                'grant_type' => 'authorization_code',
-                'code' => $code,
-                'redirect_uri' => $this->getRedirectUrl(),
-            ])
-            ->throw()
-            ->json();
+                $this->getClientSecret(),
+            ],
+            'grant_type' => 'authorization_code',
+            'code' => $code,
+            'redirect_uri' => $this->getRedirectUrl(),
+        ])
+        ->getBody()
+        ->getContents();
+
+        $response = json_decode($response, true);
 
         $this->setAccessToken($response['access_token']);
 
-        return $this->getAccessToken();
+        return $response;
     }
 
-    public function requestAccesTokenWithRefreshToken(string $refreshToken): string
+    public function requestAccessTokenWithRefreshToken(string $refreshToken): array
     {
-        $response = $this->client->asForm()
-            ->withBasicAuth(
-                $this->clientId(),
-                $this->getClientSecret()
-            )->post($this->getLoginUrl() . '/oauth/token', [
+        $response = $this->client->post($this->getLoginUrl() . '/oauth/token', [
+            'auth' => [
+                $this->getClientId(),
+                $this->getClientSecret(),
+            ],
+            'form_params' => [
                 'grant_type' => 'refresh_token',
                 'refresh_token' => $refreshToken,
-            ])
-            ->throw()
-            ->json();
+            ],
+        ])
+        ->getBody()
+        ->getContents();
+
+        $response = json_decode($response, true);
 
         $this->setAccessToken($response['access_token']);
 
-        return $this->getAccessToken();
+        return $response;
     }
 
     /** @todo not sure if we need this, need confirmation. */
     public function requestApiToken(): array
     {
-        $response = $this->client->post($this->loginUrl . '/oauth/token', [
-                'form_params' => [
-                    'grant_type' => 'client_credentials',
-                    'client_id' => $this->clientId,
-                    'client_secret' => $this->clientSecret,
-                    'scope' => '',
-                ],
-            ])
-            ->getBody()
-            ->getContents();
+        $response = $this->client->post($this->getLoginUrl() . '/oauth/token', [
+            'form_params' => [
+                'grant_type' => 'client_credentials',
+                'client_id' => $this->getClientId(),
+                'client_secret' => $this->getClientSecret(),
+                'scope' => '',
+            ],
+        ])
+        ->getBody()
+        ->getContents();
 
         $response = json_decode($response, true);
 
