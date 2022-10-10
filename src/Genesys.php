@@ -168,6 +168,7 @@ class Genesys
         $response = json_decode($response, true);
 
         $this->setAccessToken($response['access_token']);
+        $this->setRefreshToken($response['refresh_token']);
 
         return $response;
     }
