@@ -91,9 +91,11 @@ class Genesys
         return $this->clientSecret;
     }
 
-    public function setAccessToken(string $accessToken): void
+    public function setAccessToken(string $accessToken): self
     {
         $this->accessToken = $accessToken;
+
+        return $this;
     }
 
     public function getAccessToken(): string
@@ -101,9 +103,11 @@ class Genesys
         return $this->accessToken;
     }
 
-    public function setRefreshToken(string $refreshToken): void
+    public function setRefreshToken(string $refreshToken): self
     {
         $this->refreshToken = $refreshToken;
+
+        return $this;
     }
 
     public function getRefreshToken(): string
@@ -123,9 +127,11 @@ class Genesys
         return $this->redirectUrl;
     }
 
-    public function setLoginUrl(string $loginUrl): void
+    public function setLoginUrl(string $loginUrl): self
     {
         $this->loginUrl = $loginUrl;
+
+        return $this;
     }
 
     public function getLoginUrl(): string
