@@ -60,10 +60,21 @@ class Connection
         }
     }
 
-    public function put(string $url, array $params = []): array|Exception
+    public function patch(string $url, array $params = []): array|Exception
     {
         try {
             $request = $this->client->patch($this->formatUrl($url), $params);
+
+            return $this->parseResponse($request);
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            throw new Exception($this->parseExceptionMessage($e), $e->getCode());
+        }
+    }
+
+    public function put(string $url, array $params = []): array|Exception
+    {
+        try {
+            $request = $this->client->put($this->formatUrl($url), $params);
 
             return $this->parseResponse($request);
         } catch (\GuzzleHttp\Exception\ClientException $e) {

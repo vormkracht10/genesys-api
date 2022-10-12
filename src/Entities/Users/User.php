@@ -52,7 +52,7 @@ class User extends Model
 
         $params = ['body' => json_encode($params)];
 
-        return $this->connection()->put($url, $params);
+        return $this->connection()->patch($url, $params);
     }
 
     public function delete(string $id): array

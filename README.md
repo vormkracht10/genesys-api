@@ -121,6 +121,16 @@ $genesys->queues()->create([
 ]);
 ```
 
+#### Update queue
+
+```php
+$genesys->queues()->update(
+  id: '{queue-id}',
+  params: [
+    'name' => 'New name',
+]);
+```
+
 ## Testing
 
 ```bash
