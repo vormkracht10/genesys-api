@@ -38,9 +38,9 @@ class Connection
         return $this->client;
     }
 
-    public function get(string $url, array $params = [], bool $fetchAll = false): string
+    public function get(string $url, array $params = []): string
     {
-        $request = $this->client->get($this->formatUrl($url));
+        $request = $this->client->get($this->formatUrl($url), $params);
 
         return $request->getBody()->getContents();
     }
