@@ -95,6 +95,18 @@ $genesys->users()->update(
 $genesys->users()->delete(id: '{user-id}');
 ```
 
+### Queues
+
+#### List queues
+
+```php
+$genesys->queues()->list([
+  'pageNumber' => 1,
+  'pageSize' => 25,
+  'sortOrder' => 'desc',
+]);
+```
+
 ## Testing
 
 ```bash
