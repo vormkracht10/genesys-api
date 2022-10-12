@@ -2,6 +2,7 @@
 
 namespace Vormkracht10\GenesysApi;
 
+use Exception;
 use GuzzleHttp\Client;
 
 class Connection
@@ -38,11 +39,67 @@ class Connection
         return $this->client;
     }
 
-    public function get(string $url, array $params = [], bool $fetchAll = false): string
+    public function get(string $url, array $params = []): array|Exception
     {
-        $request = $this->client->get($this->formatUrl($url));
+        try {
+            $request = $this->client->get($this->formatUrl($url), $params);
 
-        return $request->getBody()->getContents();
+            return $this->parseResponse($request);
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            throw new Exception($this->parseExceptionMessage($e), $e->getCode());
+        }
+    }
+
+    public function post(string $url, array $params = []): array|Exception
+    {
+        try {
+            $request = $this->client->post($this->formatUrl($url), $params);
+
+            return $this->parseResponse($request);
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            throw new Exception($this->parseExceptionMessage($e), $e->getCode());
+        }
+    }
+
+    public function put(string $url, array $params = []): array|Exception
+    {
+        try {
+            $request = $this->client->patch($this->formatUrl($url), $params);
+
+            return $this->parseResponse($request);
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            throw new Exception($this->parseExceptionMessage($e), $e->getCode());
+        }
+    }
+
+    public function delete(string $url): array|Exception
+    {
+        try {
+            $request = $this->client->delete($this->formatUrl($url));
+
+            return $this->parseResponse($request);
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            throw new Exception($this->parseExceptionMessage($e), $e->getCode());
+        }
+    }
+
+    private function parseResponse(object $response): array
+    {
+        $response = $response->getBody()->getContents();
+
+        return json_decode($response, true);
+    }
+
+    private function parseExceptionMessage(\GuzzleHttp\Exception\ClientException $e): string
+    {
+        $response = $e->getResponse();
+        $responseBodyAsString = $response->getBody()->getContents();
+
+        $responseBody = json_decode($responseBodyAsString);
+
+        $message = $responseBody->message ?? $responseBodyAsString;
+
+        return $message;
     }
 
     private function formatUrl(string $url): string

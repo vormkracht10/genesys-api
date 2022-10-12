@@ -29,16 +29,66 @@ $genesys = Genesys::api(
 );
 ```
 
-### Get conversation by ID
+### Conversations
+
+#### Get conversation by ID
 
 ```php
-$genesys->conversation()->get('{conversation-id}');
+$genesys->conversation()->get(id: '{conversation-id}');
 ```
 
-### List conversations
+#### List conversations
 
 ```php
 $genesys->conversation()->list();
+```
+
+### Users
+
+#### Get user by ID
+
+```php
+$genesys->user()->get(id: '{user-id}');
+
+// With parameters
+$genesys->user()->get(id: '{user-id}', params: ['expand' => 'languagePreference']);
+```
+
+#### List users
+
+```php
+$genesys->user()->list();
+```
+
+#### Create user
+
+```php
+$genesys->user()->create([
+  'name' => 'Test',
+  'department' => 'Test Department',
+  'email' => 'test@testdepartment.com',
+  'addresses' => [],
+  'title' => 'Lorem Ipsum',
+  'password' => 'P1hQrt4WytLxz2gF%LYc',
+  'divisionId' => null,
+  'state' => 'active',
+])
+```
+
+#### Update user
+
+```php
+$genesys->user()->update(
+  id: '{user-id}',
+  params: [
+    'name' => 'New name',
+]);
+```
+
+#### Delete user
+
+```php
+$genesys->user()->delete(id: '{user-id}');
 ```
 
 ## Testing

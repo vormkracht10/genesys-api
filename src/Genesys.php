@@ -3,6 +3,7 @@
 namespace Vormkracht10\GenesysApi;
 
 use Vormkracht10\GenesysApi\Entities\Conversations\Conversation;
+use Vormkracht10\GenesysApi\Entities\Users\User;
 
 class Genesys
 {
@@ -24,5 +25,10 @@ class Genesys
     public function conversation(array $attributes = []): Conversation
     {
         return new Conversation($this->connection, $attributes);
+    }
+
+    public function user(array $attributes = []): User
+    {
+        return new User($this->connection, $attributes);
     }
 }
