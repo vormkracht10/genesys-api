@@ -12,13 +12,17 @@ class Model
         $this->attributes = $attributes;
     }
 
-    public function getEndpoint(string $endpoint): string
-    {
-        return $this->endpoints[$endpoint];
-    }
-
     public function connection()
     {
         return $this->connection;
+    }
+
+    public function replaceParameters(string $endpoint, array $parameters = []): string
+    {
+        foreach ($parameters as $key => $value) {
+            $endpoint = str_replace('{' . $key . '}', $value, $endpoint);
+        }
+
+        return $endpoint;
     }
 }
