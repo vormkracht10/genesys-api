@@ -4,6 +4,10 @@ namespace Vormkracht10\GenesysApi\Entities;
 
 use Vormkracht10\GenesysApi\Connection;
 
+/**
+ * @property Connection $connection
+ * @property array $attributes
+ */
 class Model
 {
     public function __construct(Connection $connection, array $attributes = [])
@@ -14,12 +18,12 @@ class Model
 
     public function connection()
     {
-        return $this->connection;
+        return $this->connection();
     }
 
-    public function replaceParameters(string $endpoint, array $parameters = []): string
+    public function replaceParameters(string $endpoint, array $params = []): string
     {
-        foreach ($parameters as $key => $value) {
+        foreach ($params as $key => $value) {
             $endpoint = str_replace('{' . $key . '}', $value, $endpoint);
         }
 
