@@ -43,10 +43,9 @@ class Connection
     {
         try {
             $request = $this->client->get($this->formatUrl($url), $params);
-        
+
             return $request->getBody()->getContents();
-            
-        } catch (\GuzzleHttp\Exception\ClientException $e) {  
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
             $this->parseAndReturnException($e);
         }
     }
@@ -57,8 +56,7 @@ class Connection
             $request = $this->client->post($this->formatUrl($url), $params);
 
             return $request->getBody()->getContents();
-            
-        } catch (\GuzzleHttp\Exception\ClientException $e) {  
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
             $this->parseAndReturnException($e);
         }
     }
