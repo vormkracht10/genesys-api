@@ -75,6 +75,16 @@ $genesys->user()->create([
 ])
 ```
 
+#### Update user
+
+```php
+$genesys->user()->update(
+  id: '{user-id}',
+  params: [
+    'name' => 'New name',
+]);
+```
+
 #### Delete user
 
 ```php

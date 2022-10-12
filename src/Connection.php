@@ -39,37 +39,59 @@ class Connection
         return $this->client;
     }
 
-    public function get(string $url, array $params = []): string
+    public function get(string $url, array $params = []): array
     {
         try {
             $request = $this->client->get($this->formatUrl($url), $params);
 
-            return $request->getBody()->getContents();
+            return $this->parseResponse($request);
+
         } catch (\GuzzleHttp\Exception\ClientException $e) {
             $this->parseAndReturnException($e);
         }
     }
 
-    public function post(string $url, array $params = []): mixed
+    public function post(string $url, array $params = []): array
     {
         try {
             $request = $this->client->post($this->formatUrl($url), $params);
 
-            return $request->getBody()->getContents();
+            return $this->parseResponse($request);
+
         } catch (\GuzzleHttp\Exception\ClientException $e) {
             $this->parseAndReturnException($e);
         }
     }
 
-    public function delete(string $url): mixed
+    public function put(string $url, array $params = []): array
+    {
+        try {
+            $request = $this->client->patch($this->formatUrl($url), $params);
+
+            return $this->parseResponse($request);
+
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            $this->parseAndReturnException($e);
+        }
+    }
+
+    public function delete(string $url): array
     {
         try {
             $request = $this->client->delete($this->formatUrl($url));
 
-            return $request->getBody()->getContents();
+            return $this->parseResponse($request);
+
         } catch (\GuzzleHttp\Exception\ClientException $e) {
             $this->parseAndReturnException($e);
         }
+    }
+
+    private function parseResponse(object $response): array
+    {
+        $response = $response->getBody()->getContents();
+
+        return json_decode($response, true);
     }
 
     private function parseAndReturnException(\GuzzleHttp\Exception\ClientException $e): Exception
