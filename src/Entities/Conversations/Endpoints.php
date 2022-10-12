@@ -8,4 +8,5 @@ enum Endpoints
     public const LIST = 'conversations';
     public const MESSAGES = 'conversations/emails/{conversationId}/messages';
     public const MESSAGE = 'conversations/emails/{conversationId}/messages/{messageId}';
+    public const EMAILS = 'conversations/emails/{conversationId}';
 }

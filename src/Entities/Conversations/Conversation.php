@@ -45,4 +45,14 @@ class Conversation extends Model
 
         return $this->connection()->get($url);
     }
+
+    public function emails(string $id): array
+    {
+        $url = $this->replaceParameters(
+            endpoint: Endpoints::EMAILS,
+            params: ['conversationId' => $id]
+        );
+
+        return $this->connection()->get($url);
+    }
 }
