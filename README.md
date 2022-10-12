@@ -131,6 +131,12 @@ $genesys->queues()->update(
 ]);
 ```
 
+#### Delete queue
+
+```php
+$genesys->queues()->delete(id: '{queue-id}');
+```
+
 ## Testing
 
 ```bash

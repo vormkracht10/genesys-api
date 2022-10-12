@@ -96,6 +96,10 @@ class Connection
     private function parseResponse(object $response): array
     {
         $response = $response->getBody()->getContents();
+        
+        if (empty($response)) {
+            return [];
+        }
 
         return json_decode($response, true);
     }

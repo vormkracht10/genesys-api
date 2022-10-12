@@ -10,6 +10,7 @@ class Queue extends Model
     public const ENDPOINT_LIST = 'routing/queues';
     public const ENDPOINT_CREATE = 'routing/queues';
     public const ENDPOINT_UPDATE = 'routing/queues/{queueId}';
+    public const ENDPOINT_DELETE = 'routing/queues/{queueId}';
 
     public function get(string $id, array $params = []): array
     {
@@ -46,5 +47,15 @@ class Queue extends Model
         $params = ['body' => json_encode($params)];
 
         return $this->connection()->put($url, $params);
+    }
+
+    public function delete(string $id): array
+    {
+        $url = $this->replaceParameters(
+            endpoint: self::ENDPOINT_DELETE,
+            params: ['queueId' => $id]
+        );
+
+        return $this->connection()->delete($url);
     }
 }
