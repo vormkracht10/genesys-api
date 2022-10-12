@@ -16,7 +16,8 @@ class User extends Model
         $url = $this->replaceParameters(
             endpoint: self::ENDPOINT_GET,
             params: ['userId' => $id,
-        ]);
+        ]
+        );
 
         return $this->connection()->get($url, $params);
     }
@@ -41,8 +42,9 @@ class User extends Model
     {
         $url = $this->replaceParameters(
             endpoint: self::ENDPOINT_DELETE,
-            params: ['userId' => $id
-        ]);
+            params: ['userId' => $id,
+        ]
+        );
 
         return $this->connection()->delete($url);
     }
