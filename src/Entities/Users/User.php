@@ -9,6 +9,7 @@ class User extends Model
     public const ENDPOINT_GET = 'users/{userId}';
     public const ENDPOINT_LIST = 'users';
     public const ENDPOINT_CREATE = 'users';
+    public const ENDPOINT_UPDATE = 'users/{userId}';
     public const ENDPOINT_DELETE = 'users/{userId}';
 
     public function get(string $id, array $params = []): array
@@ -43,7 +44,7 @@ class User extends Model
         $version = $this->get($id)['version'];
 
         $url = $this->replaceParameters(
-            endpoint: self::ENDPOINT_GET,
+            endpoint: self::ENDPOINT_UPDATE,
             params: ['userId' => $id]
         );
 
