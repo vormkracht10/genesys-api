@@ -19,6 +19,7 @@ class Queue extends Model
 
         return $this->connection()->get($url, $params);
     }
+
     public function list(array $params = []): array
     {
         $url = self::ENDPOINT_LIST;
@@ -34,6 +35,4 @@ class Queue extends Model
 
         return $this->connection()->post($url, $params);
     }
-
-
 }
