@@ -8,6 +8,7 @@ class User extends Model
 {
     public const ENDPOINT_GET = 'users/{userId}';
     public const ENDPOINT_LIST = 'users';
+    public const ENDPOINT_CREATE = 'users';
 
     public function get(string $id, array $params = []): string
     {
@@ -24,5 +25,14 @@ class User extends Model
         $url = self::ENDPOINT_LIST;
 
         return $this->connection()->get($url);
+    }
+
+    public function create(array $params): string
+    {
+        $url = self::ENDPOINT_CREATE;
+
+        $params = ['body' => json_encode($params)];
+
+        return $this->connection()->post($url, $params);
     }
 }

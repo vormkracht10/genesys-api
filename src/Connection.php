@@ -2,6 +2,7 @@
 
 namespace Vormkracht10\GenesysApi;
 
+use Exception;
 use GuzzleHttp\Client;
 
 class Connection
@@ -40,9 +41,38 @@ class Connection
 
     public function get(string $url, array $params = []): string
     {
-        $request = $this->client->get($this->formatUrl($url), $params);
+        try {
+            $request = $this->client->get($this->formatUrl($url), $params);
+        
+            return $request->getBody()->getContents();
+            
+        } catch (\GuzzleHttp\Exception\ClientException $e) {  
+            $this->parseAndReturnException($e);
+        }
+    }
 
-        return $request->getBody()->getContents();
+    public function post(string $url, array $params = []): mixed
+    {
+        try {
+            $request = $this->client->post($this->formatUrl($url), $params);
+
+            return $request->getBody()->getContents();
+            
+        } catch (\GuzzleHttp\Exception\ClientException $e) {  
+            $this->parseAndReturnException($e);
+        }
+    }
+
+    private function parseAndReturnException(\GuzzleHttp\Exception\ClientException $e): Exception
+    {
+        $response = $e->getResponse();
+        $responseBodyAsString = $response->getBody()->getContents();
+
+        $responseBody = json_decode($responseBodyAsString);
+
+        $message = $responseBody->message ?? $responseBodyAsString;
+
+        throw new Exception($message, $response->getStatusCode());
     }
 
     private function formatUrl(string $url): string

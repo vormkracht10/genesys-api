@@ -59,6 +59,21 @@ $genesys->user()->get(id: '{user-id}', params: ['expand' => 'languagePreference'
 $genesys->user()->list();
 ```
 
+### Create user
+
+```php
+$genesys->user()->create([
+  'name' => 'Test',
+  'department' => 'Test Department',
+  'email' => 'test@testdepartment.com',
+  'addresses' => [],
+  'title' => 'Lorem Ipsum',
+  'password' => 'P1hQrt4WytLxz2gF%LYc',
+  'divisionId' => null,
+  'state' => 'active',
+])
+```
+
 ## Testing
 
 ```bash
