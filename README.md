@@ -11,17 +11,17 @@ This package is a PHP wrapper for the [Genesys](https://www.genesys.com/) API. T
     -   [Authentication](#authentication)
     -   [Create Genesys API client](#create-genesys-api-client)
     -   [Conversations](#conversations)
-        -   [Get conversation by ID](#get-conversation-by-id)
+        -   [Get conversation](#get-conversation)
         -   [List conversations](#list-conversations)
     -   [Users](#users)
-        -   [Get user by ID](#get-user-by-id)
+        -   [Get user](#get-user)
         -   [List users](#list-users)
         -   [Create user](#create-user)
         -   [Update user](#update-user)
         -   [Delete user](#delete-user)
         -   [Get queues for user](#get-queues-for-user)
     -   [Queues](#queues)
-        -   [Get queue by ID](#get-queue-by-id)
+        -   [Get queue](#get-queue)
         -   [List queues](#list-queues)
         -   [Create queue](#create-queue)
         -   [Update queue](#update-queue)
@@ -63,7 +63,7 @@ $genesys = Genesys::api(
 
 ### Conversations
 
-#### Get conversation by ID
+#### Get conversation
 
 ```php
 $genesys->conversations()->get(id: '{conversation-id}');
@@ -77,7 +77,7 @@ $genesys->conversations()->list();
 
 ### Users
 
-#### Get user by ID
+#### Get user
 
 ```php
 $genesys->users()->get(id: '{user-id}');
@@ -131,7 +131,7 @@ $genesys->users()->queues(id: '{user-id}');
 
 ### Queues
 
-#### Get queue by ID
+#### Get queue
 
 ```php
 $genesys->queues()->get(id: '{queue-id}');
