@@ -3,13 +3,12 @@
 namespace Vormkracht10\GenesysApi;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Client as GuzzleHttpClient;
 
 class Connection
 {
     private string $accessToken;
 
-    private GuzzleHttpClient $client;
+    private Client $client;
 
     public string $apiDomain = 'https://api.mypurecloud.com/api/v2';
 
