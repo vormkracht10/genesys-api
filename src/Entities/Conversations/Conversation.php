@@ -13,7 +13,7 @@ class Conversation extends Model
     {
         $url = $this->replaceParameters(self::ENDPOINT_GET, ['conversationId' => $conversationId]);
 
-        return $this->connection->get($url);
+        return $this->connection()->get($url);
     }
 
     public function list(): string
