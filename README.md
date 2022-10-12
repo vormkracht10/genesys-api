@@ -16,15 +16,21 @@ composer require vormkracht10/genesys-api
 
 ## Usage
 
+### Get conversation by ID
+
 ```php
 use Vormkracht10\GenesysApi\Genesys;
 
-$genesys = Genesys::api(region: 'us')
-  ->setClientId('here-goes-your-client-id')
-  ->setClientSecret('here-goes-your-client-secret')
-  ->setRedirectUrl('https://example.com/redirect');
+$accessToken = '{access-token}';
 
-$genesys->requestApiToken();
+$genesys = Genesys::api(
+  region: 'us-west-1', // optional, default is 'us-east-1'
+  accessToken: $accessToken
+);
+
+$genesys->conversation()->get([
+  'conversation' => '{conversation-id}'
+]);
 ```
 
 ## Testing
