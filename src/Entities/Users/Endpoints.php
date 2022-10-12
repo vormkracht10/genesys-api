@@ -1,12 +1,12 @@
-<?php 
+<?php
 
 namespace Vormkracht10\GenesysApi\Entities\Users;
 
-enum Endpoints 
+enum Endpoints
 {
-    const GET = 'users/{userId}';
-    const LIST = 'users';
-    const CREATE = 'users';
-    const UPDATE = 'users/{userId}';
-    const DELETE = 'users/{userId}';
+    public const GET = 'users/{userId}';
+    public const LIST = 'users';
+    public const CREATE = 'users';
+    public const UPDATE = 'users/{userId}';
+    public const DELETE = 'users/{userId}';
 }

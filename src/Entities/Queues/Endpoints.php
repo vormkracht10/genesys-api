@@ -1,12 +1,12 @@
-<?php 
+<?php
 
 namespace Vormkracht10\GenesysApi\Entities\Queues;
 
-enum Endpoints 
+enum Endpoints
 {
-    const GET = 'routing/queues/{queueId}';
-    const LIST = 'routing/queues';
-    const CREATE = 'routing/queues';
-    const UPDATE = 'routing/queues/{queueId}';
-    const DELETE = 'routing/queues/{queueId}';
+    public const GET = 'routing/queues/{queueId}';
+    public const LIST = 'routing/queues';
+    public const CREATE = 'routing/queues';
+    public const UPDATE = 'routing/queues/{queueId}';
+    public const DELETE = 'routing/queues/{queueId}';
 }
