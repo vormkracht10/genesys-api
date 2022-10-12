@@ -16,6 +16,10 @@ composer require vormkracht10/genesys-api
 
 ## Usage
 
+### Authentication
+
+This package only provides a way to interact with the API. To handle the authentication logic we created the [oauth2-genesys](https://github.com/vormkracht10/oauth2-genesys) package which provides a [league/oauth2-client](https://github.com/thephpleague/oauth2-client) provider for Genesys.
+
 ### Create Genesys API client
 
 ```php
