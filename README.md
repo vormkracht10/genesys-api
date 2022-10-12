@@ -49,11 +49,8 @@ $genesys->conversation()->list();
 
 ```php
 $genesys->user()->get(id: '{user-id}');
-```
 
-With parameters:
-
-```php
+// With parameters
 $genesys->user()->get(id: '{user-id}', params: ['expand' => 'languagePreference']);
 ```
 
