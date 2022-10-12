@@ -8,6 +8,7 @@ class Queue extends Model
 {
     public const ENDPOINT_GET = 'routing/queues/{queueId}';
     public const ENDPOINT_LIST = 'routing/queues';
+    public const ENDPOINT_CREATE = 'routing/queues';
 
     public function get(string $id, array $params = []): array
     {
@@ -23,6 +24,15 @@ class Queue extends Model
         $url = self::ENDPOINT_LIST;
 
         return $this->connection()->get($url, $params);
+    }
+
+    public function create(array $params): array
+    {
+        $url = self::ENDPOINT_CREATE;
+
+        $params = ['body' => json_encode($params)];
+
+        return $this->connection()->post($url, $params);
     }
 
 

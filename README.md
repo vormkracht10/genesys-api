@@ -113,6 +113,14 @@ $genesys->queues()->list([
 ]);
 ```
 
+#### Create queue
+
+```php
+$genesys->queues()->create([
+  'name' => 'Test queue'
+]);
+```
+
 ## Testing
 
 ```bash
