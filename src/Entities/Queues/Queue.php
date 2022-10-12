@@ -63,4 +63,14 @@ class Queue extends Model
 
         return $this->connection()->get($url, $params);
     }
+
+    public function members(string $id, array $params = []): array
+    {
+        $url = $this->replaceParameters(
+            endpoint: Endpoints::MEMBERS,
+            params: ['queueId' => $id]
+        );
+
+        return $this->connection()->get($url, $params);
+    }
 }

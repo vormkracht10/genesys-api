@@ -10,4 +10,5 @@ enum Endpoints
     public const UPDATE = 'routing/queues/{queueId}';
     public const DELETE = 'routing/queues/{queueId}';
     public const WRAPUP_CODES = 'routing/queues/{queueId}/wrapupcodes';
+    public const MEMBERS = 'routing/queues/{queueId}/members';
 }
