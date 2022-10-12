@@ -46,7 +46,6 @@ class Connection
 
             return $this->parseResponse($request);
         } catch (\GuzzleHttp\Exception\ClientException $e) {
-
             throw new Exception($this->parseExceptionMessage($e), $e->getCode());
         }
     }
