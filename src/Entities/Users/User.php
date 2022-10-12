@@ -49,7 +49,7 @@ class User extends Model
         );
 
         $params['version'] = $version;
-    
+
         $params = ['body' => json_encode($params)];
 
         return $this->connection()->put($url, $params);

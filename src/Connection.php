@@ -45,7 +45,6 @@ class Connection
             $request = $this->client->get($this->formatUrl($url), $params);
 
             return $this->parseResponse($request);
-
         } catch (\GuzzleHttp\Exception\ClientException $e) {
             $this->parseAndReturnException($e);
         }
@@ -57,7 +56,6 @@ class Connection
             $request = $this->client->post($this->formatUrl($url), $params);
 
             return $this->parseResponse($request);
-
         } catch (\GuzzleHttp\Exception\ClientException $e) {
             $this->parseAndReturnException($e);
         }
@@ -69,7 +67,6 @@ class Connection
             $request = $this->client->patch($this->formatUrl($url), $params);
 
             return $this->parseResponse($request);
-
         } catch (\GuzzleHttp\Exception\ClientException $e) {
             $this->parseAndReturnException($e);
         }
@@ -81,7 +78,6 @@ class Connection
             $request = $this->client->delete($this->formatUrl($url));
 
             return $this->parseResponse($request);
-
         } catch (\GuzzleHttp\Exception\ClientException $e) {
             $this->parseAndReturnException($e);
         }
