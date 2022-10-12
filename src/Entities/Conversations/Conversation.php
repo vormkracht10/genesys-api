@@ -9,11 +9,14 @@ class Conversation extends Model
     public const ENDPOINT_GET = 'conversations/{conversationId}';
     public const ENDPOINT_LIST = 'conversations';
 
-    public function get(string $id): string
+    public function get(string $id, array $params = []): string
     {
-        $url = $this->replaceParameters(endpoint: self::ENDPOINT_GET, params: ['conversationId' => $id]);
+        $url = $this->replaceParameters(
+            endpoint: self::ENDPOINT_GET, 
+            params: ['conversationId' => $id]
+        );
 
-        return $this->connection()->get($url);
+        return $this->connection()->get($url, $params);
     }
 
     public function list(): string

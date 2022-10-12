@@ -11,7 +11,10 @@ class User extends Model
 
     public function get(string $id, array $params = []): string
     {
-        $url = $this->replaceParameters(endpoint: self::ENDPOINT_GET, params: ['userId' => $id]);
+        $url = $this->replaceParameters(
+            endpoint: self::ENDPOINT_GET, 
+            params: ['userId' => $id
+        ]);
 
         return $this->connection()->get($url, $params);
     }
