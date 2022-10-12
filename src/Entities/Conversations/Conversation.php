@@ -12,7 +12,7 @@ class Conversation extends Model
     public function get(string $id, array $params = []): string
     {
         $url = $this->replaceParameters(
-            endpoint: self::ENDPOINT_GET, 
+            endpoint: self::ENDPOINT_GET,
             params: ['conversationId' => $id]
         );
 
