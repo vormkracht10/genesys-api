@@ -2,7 +2,6 @@
 
 namespace Vormkracht10\GenesysApi;
 
-use Vormkracht10\GenesysApi\Connection;
 use Vormkracht10\GenesysApi\Entities\Conversations\Conversation;
 
 class Genesys
@@ -14,7 +13,7 @@ class Genesys
     public function __construct(string $accessToken, string|null $region = null)
     {
         $this->accessToken = $accessToken;
-        $this->connection = new Connection(accessToken: $accessToken, region: $region);    
+        $this->connection = new Connection(accessToken: $accessToken, region: $region);
     }
 
     public static function api(string $accessToken, string|null $region = null): Genesys

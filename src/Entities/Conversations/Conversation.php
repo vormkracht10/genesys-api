@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Vormkracht10\GenesysApi\Entities\Conversations;
 
@@ -12,4 +12,4 @@ class Conversation extends Model
     protected array $endpoints = [
         'get' => 'conversations/{conversation}',
     ];
-} 
+}

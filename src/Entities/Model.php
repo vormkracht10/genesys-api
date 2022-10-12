@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 namespace Vormkracht10\GenesysApi\Entities;
 
 use Vormkracht10\GenesysApi\Connection;
 
-class Model 
+class Model
 {
     public function __construct(Connection $connection, array $attributes = [])
     {

@@ -111,7 +111,8 @@ class Connection
             case 'ap-northeast-1':
                 $this->apiDomain = 'https://api.mypurecloud.jp/api/v2';
                 $this->authDomain = 'https://login.mypurecloud.jp';
-                
+
+                // no break
             default:
             case 'us-east-1':
                 $this->apiDomain = 'https://api.mypurecloud.com/api/v2';
