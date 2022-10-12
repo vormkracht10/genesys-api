@@ -32,7 +32,7 @@ $genesys = Genesys::api(
 ### Get conversation by ID
 
 ```php
-$genesys->conversation()->get('{conversation-id}');
+$genesys->conversation()->get(id: '{conversation-id}');
 ```
 
 ### List conversations
@@ -44,7 +44,13 @@ $genesys->conversation()->list();
 ### Get user by ID
 
 ```php
-$genesys->user()->get('{user-id}');
+$genesys->user()->get(id: '{user-id}');
+```
+
+With parameters:
+
+```php
+$genesys->user()->get(id: '{user-id}', params: ['expand' => 'languagePreference']);
 ```
 
 ### List users
