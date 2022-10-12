@@ -1,9 +1,9 @@
-<?php 
+<?php
 
 namespace Vormkracht10\GenesysApi\Entities\Conversations;
 
-enum Endpoints 
+enum Endpoints
 {
-    const GET = 'conversations/{conversationId}';
-    const LIST = 'conversations';
+    public const GET = 'conversations/{conversationId}';
+    public const LIST = 'conversations';
 }

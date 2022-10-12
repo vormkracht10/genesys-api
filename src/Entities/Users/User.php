@@ -3,7 +3,6 @@
 namespace Vormkracht10\GenesysApi\Entities\Users;
 
 use Vormkracht10\GenesysApi\Entities\Model;
-use Vormkracht10\GenesysApi\Entities\Users\Endpoints;
 
 class User extends Model
 {

@@ -3,7 +3,6 @@
 namespace Vormkracht10\GenesysApi\Entities\Queues;
 
 use Vormkracht10\GenesysApi\Entities\Model;
-use Vormkracht10\GenesysApi\Entities\Queues\Endpoints;
 
 class Queue extends Model
 {
