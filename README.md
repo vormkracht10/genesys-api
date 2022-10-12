@@ -27,6 +27,7 @@ This package is a PHP wrapper for the [Genesys](https://www.genesys.com/) API. T
         -   [Update queue](#update-queue)
         -   [Delete queue](#delete-queue)
         -   [Get the wrap-up codes for a queue](#get-the-wrap-up-codes-for-a-queue)
+        -   [Get the members of a queue](#get-the-members-of-a-queue)
 -   [Testing](#testing)
 -   [Changelog](#changelog)
 -   [Contributing](#contributing)
