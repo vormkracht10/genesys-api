@@ -58,4 +58,14 @@ class User extends Model
 
         return $this->connection()->delete($url);
     }
+
+    public function queues(string $id, array $params = []): array
+    {
+        $url = $this->replaceParameters(
+            endpoint: Endpoints::QUEUES,
+            params: ['userId' => $id]
+        );
+
+        return $this->connection()->get($url, $params);
+    }
 }

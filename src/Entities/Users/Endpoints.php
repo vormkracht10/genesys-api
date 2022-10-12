@@ -9,4 +9,5 @@ enum Endpoints
     public const CREATE = 'users';
     public const UPDATE = 'users/{userId}';
     public const DELETE = 'users/{userId}';
+    public const QUEUES = 'users/{userId}/queues';
 }

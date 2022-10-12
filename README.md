@@ -95,6 +95,12 @@ $genesys->users()->update(
 $genesys->users()->delete(id: '{user-id}');
 ```
 
+#### Get queues for user
+
+```php
+$genesys->users()->queues(id: '{user-id}');
+```
+
 ### Queues
 
 #### Get queue by ID
