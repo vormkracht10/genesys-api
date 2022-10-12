@@ -27,7 +27,6 @@ class Connection
         $this->client = new Client(
             [
                 'http_errors' => true,
-                'expect' => false,
                 'headers' => [
                     'Accept' => 'application/json',
                     'Content-Type' => 'application/json',
