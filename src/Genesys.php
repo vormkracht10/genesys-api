@@ -2,9 +2,9 @@
 
 namespace Vormkracht10\GenesysApi;
 
-use Vormkracht10\GenesysApi\Entities\Users\User;
-use Vormkracht10\GenesysApi\Entities\Queues\Queue;
 use Vormkracht10\GenesysApi\Entities\Conversations\Conversation;
+use Vormkracht10\GenesysApi\Entities\Queues\Queue;
+use Vormkracht10\GenesysApi\Entities\Users\User;
 
 class Genesys
 {
