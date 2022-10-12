@@ -6,6 +6,34 @@
 
 This package is a PHP wrapper for the [Genesys](https://www.genesys.com/) API. The package provides a fluent syntax to interact with the API.
 
+-   [Installation](#installation)
+-   [Usage](#usage)
+    -   [Authentication](#authentication)
+    -   [Create Genesys API client](#create-genesys-api-client)
+    -   [Conversations](#conversations)
+        -   [Get conversation by ID](#get-conversation-by-id)
+        -   [List conversations](#list-conversations)
+    -   [Users](#users)
+        -   [Get user by ID](#get-user-by-id)
+        -   [List users](#list-users)
+        -   [Create user](#create-user)
+        -   [Update user](#update-user)
+        -   [Delete user](#delete-user)
+        -   [Get queues for user](#get-queues-for-user)
+    -   [Queues](#queues)
+        -   [Get queue by ID](#get-queue-by-id)
+        -   [List queues](#list-queues)
+        -   [Create queue](#create-queue)
+        -   [Update queue](#update-queue)
+        -   [Delete queue](#delete-queue)
+        -   [Get the wrap-up codes for a queue](#get-the-wrap-up-codes-for-a-queue)
+-   [Testing](#testing)
+-   [Changelog](#changelog)
+-   [Contributing](#contributing)
+-   [Security Vulnerabilities](#security-vulnerabilities)
+-   [Credits](#credits)
+-   [License](#license)
+
 ## Installation
 
 You can install the package via composer:
