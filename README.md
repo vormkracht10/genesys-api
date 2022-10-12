@@ -78,6 +78,12 @@ $genesys->user()->create([
 ])
 ```
 
+#### Delete user
+
+```php
+$genesys->user()->delete(id: '{user-id}');
+```
+
 ## Testing
 
 ```bash

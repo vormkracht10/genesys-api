@@ -61,6 +61,17 @@ class Connection
         }
     }
 
+    public function delete(string $url): mixed
+    {
+        try {
+            $request = $this->client->delete($this->formatUrl($url));
+
+            return $request->getBody()->getContents();
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            $this->parseAndReturnException($e);
+        }
+    }
+
     private function parseAndReturnException(\GuzzleHttp\Exception\ClientException $e): Exception
     {
         $response = $e->getResponse();
