@@ -176,7 +176,7 @@ $genesys->queues()->delete(id: '{queue-id}');
 
 ```php
 $genesys->queues()->wrapupCodes(
-  id: '290cda51-4e9c-4c3b-8ed5-5056c629c2b6',
+  id: '{queue-id}',
   params: [
     'pageSize' => 25,
     'pageNumber' => 1
@@ -188,7 +188,7 @@ $genesys->queues()->wrapupCodes(
 
 ```php
 $genesys->queues()->members(
-  id: '290cda51-4e9c-4c3b-8ed5-5056c629c2b6',
+  id: '{queue-id}',
   params: [
     'pageSize' => 25,
     'pageNumber' => 1
