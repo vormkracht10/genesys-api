@@ -2,7 +2,7 @@
 
 namespace Vormkracht10\GenesysApi\Traits;
 
-trait FindAll
+trait GetEntity
 {
     public function get(
         array $params = [],
