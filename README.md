@@ -41,6 +41,18 @@ $genesys->conversation()->get('{conversation-id}');
 $genesys->conversation()->list();
 ```
 
+### Get user by ID
+
+```php
+$genesys->user()->get('{user-id}');
+```
+
+### List users
+
+```php
+$genesys->user()->list();
+```
+
 ## Testing
 
 ```bash
