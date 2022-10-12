@@ -7,7 +7,6 @@ trait FindAll
     public function get(
         array $params = [],
     ): string {
-
         $endpoint = $this->getEndpoint('get');
 
         if (count($params) > 0) {
