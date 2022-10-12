@@ -3,19 +3,14 @@
 namespace Vormkracht10\GenesysApi\Entities\Users;
 
 use Vormkracht10\GenesysApi\Entities\Model;
+use Vormkracht10\GenesysApi\Entities\Users\Endpoints;
 
 class User extends Model
 {
-    public const ENDPOINT_GET = 'users/{userId}';
-    public const ENDPOINT_LIST = 'users';
-    public const ENDPOINT_CREATE = 'users';
-    public const ENDPOINT_UPDATE = 'users/{userId}';
-    public const ENDPOINT_DELETE = 'users/{userId}';
-
     public function get(string $id, array $params = []): array
     {
         $url = $this->replaceParameters(
-            endpoint: self::ENDPOINT_GET,
+            endpoint: Endpoints::GET,
             params: ['userId' => $id]
         );
 
@@ -24,14 +19,14 @@ class User extends Model
 
     public function list(): array
     {
-        $url = self::ENDPOINT_LIST;
+        $url = Endpoints::LIST;
 
         return $this->connection()->get($url);
     }
 
     public function create(array $params): array
     {
-        $url = self::ENDPOINT_CREATE;
+        $url = Endpoints::CREATE;
 
         $params = ['body' => json_encode($params)];
 
@@ -44,7 +39,7 @@ class User extends Model
         $version = $this->get($id)['version'];
 
         $url = $this->replaceParameters(
-            endpoint: self::ENDPOINT_UPDATE,
+            endpoint: Endpoints::UPDATE,
             params: ['userId' => $id]
         );
 
@@ -58,7 +53,7 @@ class User extends Model
     public function delete(string $id): array
     {
         $url = $this->replaceParameters(
-            endpoint: self::ENDPOINT_DELETE,
+            endpoint: Endpoints::DELETE,
             params: ['userId' => $id]
         );
 
