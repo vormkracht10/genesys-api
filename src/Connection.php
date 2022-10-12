@@ -39,47 +39,48 @@ class Connection
         return $this->client;
     }
 
-    public function get(string $url, array $params = []): array
+    public function get(string $url, array $params = []): array|Exception
     {
         try {
             $request = $this->client->get($this->formatUrl($url), $params);
 
             return $this->parseResponse($request);
         } catch (\GuzzleHttp\Exception\ClientException $e) {
-            $this->parseAndReturnException($e);
+
+            throw new Exception($this->parseExceptionMessage($e), $e->getCode());
         }
     }
 
-    public function post(string $url, array $params = []): array
+    public function post(string $url, array $params = []): array|Exception
     {
         try {
             $request = $this->client->post($this->formatUrl($url), $params);
 
             return $this->parseResponse($request);
         } catch (\GuzzleHttp\Exception\ClientException $e) {
-            $this->parseAndReturnException($e);
+            throw new Exception($this->parseExceptionMessage($e), $e->getCode());
         }
     }
 
-    public function put(string $url, array $params = []): array
+    public function put(string $url, array $params = []): array|Exception
     {
         try {
             $request = $this->client->patch($this->formatUrl($url), $params);
 
             return $this->parseResponse($request);
         } catch (\GuzzleHttp\Exception\ClientException $e) {
-            $this->parseAndReturnException($e);
+            throw new Exception($this->parseExceptionMessage($e), $e->getCode());
         }
     }
 
-    public function delete(string $url): array
+    public function delete(string $url): array|Exception
     {
         try {
             $request = $this->client->delete($this->formatUrl($url));
 
             return $this->parseResponse($request);
         } catch (\GuzzleHttp\Exception\ClientException $e) {
-            $this->parseAndReturnException($e);
+            throw new Exception($this->parseExceptionMessage($e), $e->getCode());
         }
     }
 
@@ -90,7 +91,7 @@ class Connection
         return json_decode($response, true);
     }
 
-    private function parseAndReturnException(\GuzzleHttp\Exception\ClientException $e): Exception
+    private function parseExceptionMessage(\GuzzleHttp\Exception\ClientException $e): string
     {
         $response = $e->getResponse();
         $responseBodyAsString = $response->getBody()->getContents();
@@ -99,7 +100,7 @@ class Connection
 
         $message = $responseBody->message ?? $responseBodyAsString;
 
-        throw new Exception($message, $response->getStatusCode());
+        return $message;
     }
 
     private function formatUrl(string $url): string
