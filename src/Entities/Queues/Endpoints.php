@@ -9,4 +9,5 @@ enum Endpoints
     const CREATE = 'routing/queues';
     const UPDATE = 'routing/queues/{queueId}';
     const DELETE = 'routing/queues/{queueId}';
+    const WRAPUP_CODES = 'routing/queues/{queueId}/wrapupcodes';
 }

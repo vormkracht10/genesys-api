@@ -137,6 +137,18 @@ $genesys->queues()->update(
 $genesys->queues()->delete(id: '{queue-id}');
 ```
 
+#### Get the wrap-up codes for a queue
+
+```php
+$genesys->queues()->wrapupCodes(
+  id: '290cda51-4e9c-4c3b-8ed5-5056c629c2b6',
+  params: [
+    'pageSize' => 25,
+    'pageNumber' => 1
+  ]
+);
+```
+
 ## Testing
 
 ```bash

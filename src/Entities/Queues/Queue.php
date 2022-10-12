@@ -54,4 +54,14 @@ class Queue extends Model
 
         return $this->connection()->delete($url);
     }
+
+    public function wrapupCodes(string $id, array $params = []): array
+    {
+        $url = $this->replaceParameters(
+            endpoint: Endpoints::WRAPUP_CODES,
+            params: ['queueId' => $id]
+        );
+
+        return $this->connection()->get($url, $params);
+    }
 }
