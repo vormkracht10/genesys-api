@@ -32,4 +32,17 @@ class Conversation extends Model
 
         return $this->connection()->get($url);
     }
+
+    public function message(string $conversationId, string $messageId): array
+    {
+        $url = $this->replaceParameters(
+            endpoint: Endpoints::MESSAGE,
+            params: [
+                'conversationId' => $conversationId,
+                'messageId' => $messageId,
+            ]
+        );
+
+        return $this->connection()->get($url);
+    }
 }
