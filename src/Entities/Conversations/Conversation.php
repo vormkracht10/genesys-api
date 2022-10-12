@@ -11,7 +11,7 @@ class Conversation extends Model
 
     public function get(string $conversationId): string
     {
-        $url = $this->replaceParameters(self::ENDPOINT_GET, ['conversationId' => $conversationId]);
+        $url = $this->replaceParameters(endpoint: self::ENDPOINT_GET, params: ['conversationId' => $conversationId]);
 
         return $this->connection()->get($url);
     }
