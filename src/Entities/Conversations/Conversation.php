@@ -55,4 +55,16 @@ class Conversation extends Model
 
         return $this->connection()->get($url);
     }
+
+    public function updateAttributes(string $conversationId, string $participantId, array $params): array
+    {
+        $url = $this->replaceParameters(
+            endpoint: Endpoints::UPDATE_ATTRIBUTES,
+            params: ['conversationId' => $conversationId, 'participantId' => $participantId]
+        );
+
+        $params = ['attributes' => json_encode($params)];
+
+        return $this->connection()->patch($url, $params);
+    }
 }

@@ -16,6 +16,7 @@ This package is a PHP wrapper for the [Genesys](https://www.genesys.com/) API. T
         -   [Messages for conversation](#messages-for-conversation)
         -   [Message for conversation](#message-for-conversation)
         -   [Emails for conversation](#emails-for-conversation)
+        -   [Update attributes for conversation](#update-attributes-for-conversation)
     -   [Users](#users)
         -   [Get user](#get-user)
         -   [List users](#list-users)
@@ -98,6 +99,18 @@ $genesys->conversations()->message(
 
 ```php
 $genesys->conversations()->emails(id: '{conversation-id}');
+```
+
+#### Update attributes for conversation
+
+```php
+$genesys->conversations()->updateAttributes(
+  conversationId: '{conversation-id}',
+  participantId: '{participant-id}',
+  params: [
+    'labels' => ['Done', 'Mailed customer']
+  ]
+);
 ```
 
 ### Users
