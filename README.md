@@ -34,13 +34,13 @@ $genesys = Genesys::api(
 #### Get conversation by ID
 
 ```php
-$genesys->conversation()->get(id: '{conversation-id}');
+$genesys->conversations()->get(id: '{conversation-id}');
 ```
 
 #### List conversations
 
 ```php
-$genesys->conversation()->list();
+$genesys->conversations()->list();
 ```
 
 ### Users
@@ -48,22 +48,22 @@ $genesys->conversation()->list();
 #### Get user by ID
 
 ```php
-$genesys->user()->get(id: '{user-id}');
+$genesys->users()->get(id: '{user-id}');
 
 // With parameters
-$genesys->user()->get(id: '{user-id}', params: ['expand' => 'languagePreference']);
+$genesys->users()->get(id: '{user-id}', params: ['expand' => 'languagePreference']);
 ```
 
 #### List users
 
 ```php
-$genesys->user()->list();
+$genesys->users()->list();
 ```
 
 #### Create user
 
 ```php
-$genesys->user()->create([
+$genesys->users()->create([
   'name' => 'Test',
   'department' => 'Test Department',
   'email' => 'test@testdepartment.com',
@@ -78,7 +78,7 @@ $genesys->user()->create([
 #### Update user
 
 ```php
-$genesys->user()->update(
+$genesys->users()->update(
   id: '{user-id}',
   params: [
     'name' => 'New name',
@@ -88,7 +88,7 @@ $genesys->user()->update(
 #### Delete user
 
 ```php
-$genesys->user()->delete(id: '{user-id}');
+$genesys->users()->delete(id: '{user-id}');
 ```
 
 ## Testing
