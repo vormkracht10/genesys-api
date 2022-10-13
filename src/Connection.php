@@ -41,7 +41,9 @@ class Connection
     public function get(string $url, array $params = []): array|Exception
     {
         try {
-            $request = $this->client->get($this->formatUrl($url), $params);
+            $query = http_build_query($params);
+
+            $request = $this->client->get($this->formatUrl($url) . '?' . $query);
 
             return $this->parseResponse($request);
         } catch (\GuzzleHttp\Exception\ClientException $e) {
