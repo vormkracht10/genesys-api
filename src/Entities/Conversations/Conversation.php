@@ -68,7 +68,7 @@ class Conversation extends Model
         return $this->connection()->patch($url, $params);
     }
 
-    public function updateConversationParticipant(string $conversationId, string $participantId, array $params): array
+    public function updateParticipant(string $conversationId, string $participantId, array $params): array
     {
         $url = $this->replaceParameters(
             endpoint: Endpoints::UPDATE_CONVERSATION_PARTICIPANT,
