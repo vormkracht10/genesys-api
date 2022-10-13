@@ -6,6 +6,39 @@
 
 This package is a PHP wrapper for the [Genesys](https://www.genesys.com/) API. The package provides a fluent syntax to interact with the API.
 
+-   [Installation](#installation)
+-   [Usage](#usage)
+    -   [Authentication](#authentication)
+    -   [Create Genesys API client](#create-genesys-api-client)
+    -   [Conversations](#conversations)
+        -   [Get conversation](#get-conversation)
+        -   [List conversations](#list-conversations)
+        -   [Messages for conversation](#messages-for-conversation)
+        -   [Message for conversation](#message-for-conversation)
+        -   [Emails for conversation](#emails-for-conversation)
+        -   [Update attributes for conversation](#update-attributes-for-conversation)
+    -   [Users](#users)
+        -   [Get user](#get-user)
+        -   [List users](#list-users)
+        -   [Create user](#create-user)
+        -   [Update user](#update-user)
+        -   [Delete user](#delete-user)
+        -   [Get queues for user](#get-queues-for-user)
+    -   [Queues](#queues)
+        -   [Get queue](#get-queue)
+        -   [List queues](#list-queues)
+        -   [Create queue](#create-queue)
+        -   [Update queue](#update-queue)
+        -   [Delete queue](#delete-queue)
+        -   [Get the wrap-up codes for a queue](#get-the-wrap-up-codes-for-a-queue)
+        -   [Get the members of a queue](#get-the-members-of-a-queue)
+-   [Testing](#testing)
+-   [Changelog](#changelog)
+-   [Contributing](#contributing)
+-   [Security Vulnerabilities](#security-vulnerabilities)
+-   [Credits](#credits)
+-   [License](#license)
+
 ## Installation
 
 You can install the package via composer:
@@ -35,7 +68,7 @@ $genesys = Genesys::api(
 
 ### Conversations
 
-#### Get conversation by ID
+#### Get conversation
 
 ```php
 $genesys->conversations()->get(id: '{conversation-id}');
@@ -47,9 +80,42 @@ $genesys->conversations()->get(id: '{conversation-id}');
 $genesys->conversations()->list();
 ```
 
+#### Messages for conversation
+
+```php
+$genesys->conversations()->messages(id: '{conversation-id}');
+```
+
+#### Message for conversation
+
+```php
+$genesys->conversations()->message(
+  conversationId: '{conversation-id}',
+  messageId: '{message-id}'
+);
+```
+
+#### Emails for conversation
+
+```php
+$genesys->conversations()->emails(id: '{conversation-id}');
+```
+
+#### Update attributes for conversation
+
+```php
+$genesys->conversations()->updateAttributes(
+  conversationId: '{conversation-id}',
+  participantId: '{participant-id}',
+  params: [
+    'labels' => ['Done', 'Mailed customer']
+  ]
+);
+```
+
 ### Users
 
-#### Get user by ID
+#### Get user
 
 ```php
 $genesys->users()->get(id: '{user-id}');
@@ -93,6 +159,78 @@ $genesys->users()->update(
 
 ```php
 $genesys->users()->delete(id: '{user-id}');
+```
+
+#### Get queues for user
+
+```php
+$genesys->users()->queues(id: '{user-id}');
+```
+
+### Queues
+
+#### Get queue
+
+```php
+$genesys->queues()->get(id: '{queue-id}');
+```
+
+#### List queues
+
+```php
+$genesys->queues()->list([
+  'pageNumber' => 1,
+  'pageSize' => 25,
+  'sortOrder' => 'desc',
+]);
+```
+
+#### Create queue
+
+```php
+$genesys->queues()->create([
+  'name' => 'Test queue'
+]);
+```
+
+#### Update queue
+
+```php
+$genesys->queues()->update(
+  id: '{queue-id}',
+  params: [
+    'name' => 'New name',
+]);
+```
+
+#### Delete queue
+
+```php
+$genesys->queues()->delete(id: '{queue-id}');
+```
+
+#### Get the wrap-up codes for a queue
+
+```php
+$genesys->queues()->wrapupCodes(
+  id: '{queue-id}',
+  params: [
+    'pageSize' => 25,
+    'pageNumber' => 1
+  ]
+);
+```
+
+#### Get the members of a queue
+
+```php
+$genesys->queues()->members(
+  id: '{queue-id}',
+  params: [
+    'pageSize' => 25,
+    'pageNumber' => 1
+  ]
+);
 ```
 
 ## Testing

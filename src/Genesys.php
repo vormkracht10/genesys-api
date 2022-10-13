@@ -3,6 +3,7 @@
 namespace Vormkracht10\GenesysApi;
 
 use Vormkracht10\GenesysApi\Entities\Conversations\Conversation;
+use Vormkracht10\GenesysApi\Entities\Queues\Queue;
 use Vormkracht10\GenesysApi\Entities\Users\User;
 
 class Genesys
@@ -30,5 +31,10 @@ class Genesys
     public function users(array $attributes = []): User
     {
         return new User($this->connection, $attributes);
+    }
+
+    public function queues(array $attributes = []): Queue
+    {
+        return new Queue($this->connection, $attributes);
     }
 }

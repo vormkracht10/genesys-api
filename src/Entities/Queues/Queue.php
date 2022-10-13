@@ -1,26 +1,26 @@
 <?php
 
-namespace Vormkracht10\GenesysApi\Entities\Users;
+namespace Vormkracht10\GenesysApi\Entities\Queues;
 
 use Vormkracht10\GenesysApi\Entities\Model;
 
-class User extends Model
+class Queue extends Model
 {
     public function get(string $id, array $params = []): array
     {
         $url = $this->replaceParameters(
             endpoint: Endpoints::GET,
-            params: ['userId' => $id]
+            params: ['queueId' => $id]
         );
 
         return $this->connection()->get($url, $params);
     }
 
-    public function list(): array
+    public function list(array $params = []): array
     {
         $url = Endpoints::LIST;
 
-        return $this->connection()->get($url);
+        return $this->connection()->get($url, $params);
     }
 
     public function create(array $params): array
@@ -34,36 +34,41 @@ class User extends Model
 
     public function update(string $id, array $params): array
     {
-        // It's required to get the version of the user before updating it.
-        $version = $this->get($id)['version'];
-
         $url = $this->replaceParameters(
             endpoint: Endpoints::UPDATE,
-            params: ['userId' => $id]
+            params: ['queueId' => $id]
         );
-
-        $params['version'] = $version;
 
         $params = ['body' => json_encode($params)];
 
-        return $this->connection()->patch($url, $params);
+        return $this->connection()->put($url, $params);
     }
 
     public function delete(string $id): array
     {
         $url = $this->replaceParameters(
             endpoint: Endpoints::DELETE,
-            params: ['userId' => $id]
+            params: ['queueId' => $id]
         );
 
         return $this->connection()->delete($url);
     }
 
-    public function queues(string $id, array $params = []): array
+    public function wrapupCodes(string $id, array $params = []): array
     {
         $url = $this->replaceParameters(
-            endpoint: Endpoints::QUEUES,
-            params: ['userId' => $id]
+            endpoint: Endpoints::WRAPUP_CODES,
+            params: ['queueId' => $id]
+        );
+
+        return $this->connection()->get($url, $params);
+    }
+
+    public function members(string $id, array $params = []): array
+    {
+        $url = $this->replaceParameters(
+            endpoint: Endpoints::MEMBERS,
+            params: ['queueId' => $id]
         );
 
         return $this->connection()->get($url, $params);
