@@ -6,6 +6,7 @@ enum Endpoints
 {
     public const GET = 'conversations/{conversationId}';
     public const LIST = 'conversations';
+    public const CREATE = 'conversations/emails';
     public const MESSAGES = 'conversations/emails/{conversationId}/messages';
     public const MESSAGE = 'conversations/emails/{conversationId}/messages/{messageId}';
     public const EMAILS = 'conversations/emails/{conversationId}';

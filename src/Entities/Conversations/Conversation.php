@@ -24,6 +24,13 @@ class Conversation extends Model
         return $this->connection()->get($url);
     }
 
+    public function create(array $params = []): array
+    {
+        $url = Endpoints::CREATE;
+
+        return $this->connection()->post($url, $params);
+    }
+
     public function messages(string $id): array
     {
         $url = $this->replaceParameters(

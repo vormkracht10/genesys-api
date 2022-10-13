@@ -13,6 +13,7 @@ This package is a PHP wrapper for the [Genesys](https://www.genesys.com/) API. T
     -   [Conversations](#conversations)
         -   [Get conversation](#get-conversation)
         -   [List conversations](#list-conversations)
+        -   [Create conversation](#create-conversation)
         -   [Messages for conversation](#messages-for-conversation)
         -   [Message for conversation](#message-for-conversation)
         -   [Update conversation participant](#update-conversation-participant)
@@ -79,6 +80,14 @@ $genesys->conversations()->get(id: '{conversation-id}');
 
 ```php
 $genesys->conversations()->list();
+```
+
+#### Create conversation
+
+```php
+$genesys->conversations()->create(
+  params: []
+);
 ```
 
 #### Messages for conversation
