@@ -10,4 +10,5 @@ enum Endpoints
     public const MESSAGE = 'conversations/emails/{conversationId}/messages/{messageId}';
     public const EMAILS = 'conversations/emails/{conversationId}';
     public const UPDATE_ATTRIBUTES = 'conversations/{conversationId}/participants/{participantId}/attributes';
+    public const UPDATE_CONVERSATION_PARTICIPANT = 'conversations/emails/{conversationId}/participants/{participantId}';
 }
