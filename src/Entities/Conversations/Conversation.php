@@ -3,7 +3,6 @@
 namespace Vormkracht10\GenesysApi\Entities\Conversations;
 
 use Vormkracht10\GenesysApi\Entities\Model;
-use Vormkracht10\GenesysApi\Entities\Conversations\Endpoints;
 
 class Conversation extends Model
 {
