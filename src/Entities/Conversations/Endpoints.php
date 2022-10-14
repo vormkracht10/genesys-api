@@ -10,6 +10,7 @@ enum Endpoints
     public const CREATE_MESSAGE = 'conversations/{conversationId}/messages';
     public const MESSAGES = 'conversations/emails/{conversationId}/messages';
     public const MESSAGE = 'conversations/emails/{conversationId}/messages/{messageId}';
+    public const MESSAGE_DRAFT = 'conversations/emails/{conversationId}/messages/draft';
     public const EMAILS = 'conversations/emails/{conversationId}';
     public const UPDATE_ATTRIBUTES = 'conversations/{conversationId}/participants/{participantId}/attributes';
     public const UPDATE_CONVERSATION_PARTICIPANT = 'conversations/emails/{conversationId}/participants/{participantId}';

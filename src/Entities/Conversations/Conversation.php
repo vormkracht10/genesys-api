@@ -63,6 +63,18 @@ class Conversation extends Model
         return $this->connection()->get($url);
     }
 
+    public function messageDraft(string $conversationId): array
+    {
+        $url = $this->replaceParameters(
+            endpoint: Endpoints::MESSAGE_DRAFT,
+            params: [
+                'conversationId' => $conversationId,
+            ]
+        );
+
+        return $this->connection()->get($url);
+    }
+
     public function emails(string $id): array
     {
         $url = $this->replaceParameters(
