@@ -40,6 +40,16 @@ class Conversation extends Model
         return $this->connection()->get($url);
     }
 
+    public function createMessage(string $conversationId, array $params): array
+    {
+        $url = $this->replaceParameters(
+            endpoint: Endpoints::CREATE_MESSAGE,
+            params: ['conversationId' => $conversationId]
+        );
+
+        return $this->connection()->post($url, $params);
+    }
+
     public function message(string $conversationId, string $messageId): array
     {
         $url = $this->replaceParameters(
@@ -85,5 +95,15 @@ class Conversation extends Model
         $params = ['body' => json_encode($params)];
 
         return $this->connection()->patch($url, $params);
+    }
+
+    public function replaceParticipant(string $conversationId, string $participantId, array $params): array
+    {
+        $url = $this->replaceParameters(
+            endpoint: Endpoints::REPLACE_CONVERSATION_PARTICIPANT,
+            params: ['conversationId' => $conversationId, 'participantId' => $participantId]
+        );
+
+        return $this->connection()->put($url, $params);
     }
 }
