@@ -264,7 +264,7 @@ $genesys->queues()->delete(id: '{queue-id}');
 #### Get the wrap-up codes for a queue
 
 ```php
-$genesys->queues()->wrapupCodes(
+$genesys->queues()->getWrapupCodes(
   id: '{queue-id}',
   params: [
     'pageSize' => 25,
