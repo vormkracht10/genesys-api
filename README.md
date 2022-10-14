@@ -16,9 +16,11 @@ This package is a PHP wrapper for the [Genesys](https://www.genesys.com/) API. T
         -   [Create conversation](#create-conversation)
         -   [Messages for conversation](#messages-for-conversation)
         -   [Message for conversation](#message-for-conversation)
+        -   [Message draft for conversation](#message-draft-for-conversation)
         -   [Update conversation participant](#update-conversation-participant)
         -   [Emails for conversation](#emails-for-conversation)
         -   [Update attributes for conversation](#update-attributes-for-conversation)
+        -   [Replace participant](#replace-participant)
     -   [Users](#users)
         -   [Get user](#get-user)
         -   [List users](#list-users)
@@ -105,6 +107,14 @@ $genesys->conversations()->message(
 );
 ```
 
+#### Message draft for conversation
+
+```php
+$genesys->conversations()->messageDraft(
+  conversationId: '{conversation-id}',
+);
+```
+
 #### Update conversation participant
 
 ```php
@@ -129,6 +139,18 @@ $genesys->conversations()->updateAttributes(
   participantId: '{participant-id}',
   params: [
     'labels' => ['Done', 'Mailed customer']
+  ]
+);
+```
+
+#### Replace participant
+
+```php
+$genesys->conversations()->replaceParticipant(
+  conversationId: '{conversation-id}',
+  participantId: '{participant-id}',
+  params: [
+    'userId' => '{user-id}'
   ]
 );
 ```
