@@ -107,12 +107,18 @@ $genesys->conversations()->message(
 );
 ```
 
-#### Message draft for conversation
+#### Get message draft for conversation
 
 ```php
-$genesys->conversations()->messageDraft(
+$genesys->conversations()->getMessageDraft(
   conversationId: '{conversation-id}',
 );
+```
+
+#### Update message draft
+
+```php
+
 ```
 
 #### Update conversation participant
