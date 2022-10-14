@@ -104,6 +104,6 @@ class Conversation extends Model
             params: ['conversationId' => $conversationId, 'participantId' => $participantId]
         );
 
-        return $this->connection()->put($url, $params);
+        return $this->connection()->post($url, $params);
     }
 }
