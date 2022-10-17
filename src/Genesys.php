@@ -23,16 +23,19 @@ class Genesys
         return new Genesys(accessToken: $accessToken, region: $region);
     }
 
+    /** @param array<mixed> $attributes */
     public function conversations(array $attributes = []): Conversation
     {
         return new Conversation($this->connection, $attributes);
     }
 
+    /** @param array<mixed> $attributes */
     public function users(array $attributes = []): User
     {
         return new User($this->connection, $attributes);
     }
 
+    /** @param array<mixed> $attributes */
     public function queues(array $attributes = []): Queue
     {
         return new Queue($this->connection, $attributes);
