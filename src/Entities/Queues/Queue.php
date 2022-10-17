@@ -57,7 +57,7 @@ class Queue extends Model
     public function getWrapupCodes(string $id, array $params = []): array
     {
         $url = $this->replaceParameters(
-            endpoint: Endpoints::WRAPUP_CODES,
+            endpoint: Endpoints::GET_WRAPUP_CODES,
             params: ['queueId' => $id]
         );
 
