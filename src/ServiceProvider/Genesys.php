@@ -9,20 +9,15 @@ class Genesys extends ServiceProvider
 {
     public function register(): void
     {
-        $this->app->singleton(GenesysApi::class, function ($app) {
+        $this->app->singleton(GenesysApi::class, function ($app, $accessToken) {
 
             $config = $app->make('config')->get('genesys');
 
             return new GenesysApi(
                 region: $config['region'],
-                accessToken: $config['access_token'],
-                // Get access token by user
+                accessToken: $accessToken,
             );
         });
-
-        // $this->app->when(GenesysApi::class)
-        //     ->needs('$accessToken')
-        //     ->give($accessToken);
     }
 
     /** @return array<int, string> */
