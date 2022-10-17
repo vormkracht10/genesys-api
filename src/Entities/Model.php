@@ -12,9 +12,10 @@ class Model
 {
     /** @param array<mixed> $attributes */
     public function __construct(
-        public Connection $connection, 
+        public Connection $connection,
         public array $attributes = []
-    ) {}
+    ) {
+    }
 
     public function connection(): Connection
     {
