@@ -16,13 +16,11 @@ class GenesysProvider extends ServiceProvider
 
     public function register(): void
     {
-        $this->app->singleton(Genesys::class, function ($app) {
+        $this->app->singleton(Genesys::class, function ($app, array $params) {
             $config = $app->make('config')->get('genesys');
 
             return new Genesys(
-                accessToken: 'test',
                 region: $config['region'],
-                // accessToken: $accessToken,
             );
         });
     }

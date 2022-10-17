@@ -4,6 +4,7 @@ namespace Vormkracht10\GenesysApi;
 
 use Exception;
 use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Request;
 
 class Connection
 {
@@ -15,9 +16,8 @@ class Connection
 
     public string $authDomain = 'https://login.mypurecloud.com';
 
-    public function __construct(string $accessToken, string|null $region)
+    public function __construct(string|null $region)
     {
-        $this->accessToken = $accessToken;
         $this->setRegion($region);
         $this->client();
     }
@@ -30,7 +30,6 @@ class Connection
                 'headers' => [
                     'Accept' => 'application/json',
                     'Content-Type' => 'application/json',
-                    'Authorization' => 'Bearer ' . $this->accessToken,
                 ],
             ]
         );
@@ -38,12 +37,35 @@ class Connection
         return $this->client;
     }
 
+    private function request(string $method, string $url, array $options = [])
+    {
+        $options['headers'] = array_merge(
+            $options['headers'] ?? [],
+            [
+                'Authorization' => 'Bearer ' . $this->accessToken,
+            ]
+        );
+
+        return $this->client->request(
+            method: $method,
+            uri: $url,
+            options: $options
+        );
+    }
+
+    public function setAccessToken(string $accessToken): self
+    {
+        $this->accessToken = $accessToken;
+
+        return $this;
+    }
+
     public function get(string $url, array $params = []): array|Exception
     {
         try {
             $query = http_build_query($params);
 
-            $request = $this->client->get($this->formatUrl($url) . '?' . $query);
+            $request = $this->request('GET', $this->formatUrl($url) . '?' . $query);
 
             return $this->parseResponse($request);
         } catch (\GuzzleHttp\Exception\ClientException $e) {
@@ -54,7 +76,9 @@ class Connection
     public function post(string $url, array $params = []): array|Exception
     {
         try {
-            $request = $this->client->post($this->formatUrl($url), $params);
+
+            $request = $this->request('POST', $this->formatUrl($url), $params);
+
 
             return $this->parseResponse($request);
         } catch (\GuzzleHttp\Exception\ClientException $e) {

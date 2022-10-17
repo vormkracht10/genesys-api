@@ -12,15 +12,21 @@ class Genesys
 
     protected Connection $connection;
 
-    public function __construct(string $accessToken, string|null $region = null)
+    public function __construct(string|null $region = null)
     {
-        $this->accessToken = $accessToken;
-        $this->connection = new Connection(accessToken: $accessToken, region: $region);
+        $this->connection = new Connection(region: $region);
     }
 
-    public static function api(string $accessToken, string|null $region = null): Genesys
+    public function setAccessToken(string $accessToken): self
     {
-        return new Genesys(accessToken: $accessToken, region: $region);
+        $this->connection->setAccessToken($accessToken);
+
+        return $this;
+    }
+
+    public static function api(string|null $region = null): Genesys
+    {
+        return new Genesys(region: $region);
     }
 
     /** @param array<mixed> $attributes */
