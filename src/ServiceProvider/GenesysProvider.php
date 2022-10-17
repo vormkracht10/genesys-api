@@ -7,6 +7,13 @@ use Vormkracht10\GenesysApi\Genesys;
 
 class GenesysProvider extends ServiceProvider
 {
+    public function boot(): void
+    {
+        $this->publishes([
+            __DIR__.'/../../config/genesys.php' => config_path('genesys.php'),
+        ]);
+    }
+
     public function register(): void
     {
         $this->app->singleton(Genesys::class, function ($app) {
