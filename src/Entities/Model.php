@@ -10,17 +10,18 @@ use Vormkracht10\GenesysApi\Connection;
  */
 class Model
 {
-    public function __construct(Connection $connection, array $attributes = [])
-    {
-        $this->connection = $connection;
-        $this->attributes = $attributes;
-    }
+    /** @param array<mixed> $attributes */
+    public function __construct(
+        public Connection $connection, 
+        public array $attributes = []
+    ) {}
 
-    public function connection()
+    public function connection(): Connection
     {
         return $this->connection;
     }
 
+    /** @param array<string, string> $params */
     public function replaceParameters(string $endpoint, array $params = []): string
     {
         foreach ($params as $key => $value) {
