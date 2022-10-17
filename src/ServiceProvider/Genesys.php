@@ -1,11 +1,11 @@
-<?php 
+<?php
 
 namespace Vormkracht10\GenesysApi\ServiceProvider;
 
 use Illuminate\Support\ServiceProvider;
 use Vormkracht10\GenesysApi\Genesys as GenesysApi;
 
-class Genesys extends ServiceProvider 
+class Genesys extends ServiceProvider
 {
     public function register(): void
     {
