@@ -66,8 +66,8 @@ class Connection
     }
 
     /**
-     * @param array<mixed> $options  
-     * @return array<mixed>|Exception 
+     * @param array<mixed> $options
+     * @return array<mixed>|Exception
      */
     public function get(string $url, array $options = []): array|Exception
     {
@@ -83,8 +83,8 @@ class Connection
     }
 
     /**
-     * @param array<mixed> $options  
-     * @return array<mixed>|Exception 
+     * @param array<mixed> $options
+     * @return array<mixed>|Exception
      */
     public function post(string $url, array $options = []): array|Exception
     {
@@ -98,8 +98,8 @@ class Connection
     }
 
     /**
-     * @param array<mixed> $options  
-     * @return array<mixed>|Exception 
+     * @param array<mixed> $options
+     * @return array<mixed>|Exception
      */
     public function patch(string $url, array $options = []): array|Exception
     {
@@ -113,8 +113,8 @@ class Connection
     }
 
     /**
-     * @param array<mixed> $options  
-     * @return array<mixed>|Exception 
+     * @param array<mixed> $options
+     * @return array<mixed>|Exception
      */
     public function put(string $url, array $options = []): array|Exception
     {
