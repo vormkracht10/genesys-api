@@ -38,14 +38,18 @@ class Connection
     }
 
     /** @param array<mixed> $options */
-    private function request(string $method, string $url, array $options = []): ResponseInterface
+    private function request(string $method, string $url, array $params = []): ResponseInterface
     {
         $options['headers'] = array_merge(
-            $options['headers'] ?? [],
+            $params['headers'] ?? [],
             [
                 'Authorization' => 'Bearer ' . $this->accessToken,
             ]
         );
+
+        if (!empty($params)) {
+            $options['body'] = json_encode($params);        
+        }
 
         return $this->client->request(
             method: $method,
@@ -85,9 +89,7 @@ class Connection
     public function post(string $url, array $options = []): array|Exception
     {
         try {
-
             $request = $this->request('POST', $this->formatUrl($url), $options);
-
 
             return $this->parseResponse($request);
         } catch (\GuzzleHttp\Exception\ClientException $e) {

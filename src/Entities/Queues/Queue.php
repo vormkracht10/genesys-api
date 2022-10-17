@@ -27,8 +27,6 @@ class Queue extends Model
     {
         $url = Endpoints::CREATE;
 
-        $params = ['body' => json_encode($params)];
-
         return $this->connection()->post($url, $params);
     }
 
@@ -38,8 +36,6 @@ class Queue extends Model
             endpoint: Endpoints::UPDATE,
             params: ['queueId' => $id]
         );
-
-        $params = ['body' => json_encode($params)];
 
         return $this->connection()->put($url, $params);
     }
