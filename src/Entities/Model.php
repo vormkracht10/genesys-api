@@ -4,10 +4,6 @@ namespace Vormkracht10\GenesysApi\Entities;
 
 use Vormkracht10\GenesysApi\Connection;
 
-/**
- * @property Connection $connection
- * @property array $attributes
- */
 class Model
 {
     /** @param array<mixed> $attributes */
