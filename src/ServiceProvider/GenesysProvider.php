@@ -13,8 +13,8 @@ class GenesysProvider extends ServiceProvider
             $config = $app->make('config')->get('genesys');
 
             return new Genesys(
-                region: $config['region'],
                 accessToken: 'test',
+                region: $config['region'],
                 // accessToken: $accessToken,
             );
         });
