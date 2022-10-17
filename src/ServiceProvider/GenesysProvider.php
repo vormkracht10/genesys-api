@@ -3,16 +3,16 @@
 namespace Vormkracht10\GenesysApi\ServiceProvider;
 
 use Illuminate\Support\ServiceProvider;
-use Vormkracht10\GenesysApi\Genesys as GenesysApi;
+use Vormkracht10\GenesysApi\Genesys;
 
-class Genesys extends ServiceProvider
+class GenesysProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->app->singleton(GenesysApi::class, function ($app, $accessToken) {
+        $this->app->singleton(Genesys::class, function ($app, $accessToken) {
             $config = $app->make('config')->get('genesys');
 
-            return new GenesysApi(
+            return new Genesys(
                 region: $config['region'],
                 accessToken: $accessToken,
             );
@@ -22,6 +22,6 @@ class Genesys extends ServiceProvider
     /** @return array<int, string> */
     public function provides(): array
     {
-        return [GenesysApi::class];
+        return [Genesys::class];
     }
 }
