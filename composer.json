@@ -16,7 +16,8 @@
     ],
     "require": {
         "php": "^8.0",
-        "guzzlehttp/guzzle": "^7.5"
+        "guzzlehttp/guzzle": "^7.5",
+        "illuminate/support": "^9.35"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.0",
