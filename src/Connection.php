@@ -4,7 +4,7 @@ namespace Vormkracht10\GenesysApi;
 
 use Exception;
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Request;
+use Psr\Http\Message\ResponseInterface;
 
 class Connection
 {
@@ -37,7 +37,8 @@ class Connection
         return $this->client;
     }
 
-    private function request(string $method, string $url, array $options = [])
+    /** @param array<mixed> $options */
+    private function request(string $method, string $url, array $options = []): ResponseInterface
     {
         $options['headers'] = array_merge(
             $options['headers'] ?? [],
@@ -60,10 +61,14 @@ class Connection
         return $this;
     }
 
-    public function get(string $url, array $params = []): array|Exception
+    /**
+     * @param array<mixed> $options  
+     * @return array<mixed>|Exception 
+     */
+    public function get(string $url, array $options = []): array|Exception
     {
         try {
-            $query = http_build_query($params);
+            $query = http_build_query($options);
 
             $request = $this->request('GET', $this->formatUrl($url) . '?' . $query);
 
@@ -73,11 +78,15 @@ class Connection
         }
     }
 
-    public function post(string $url, array $params = []): array|Exception
+    /**
+     * @param array<mixed> $options  
+     * @return array<mixed>|Exception 
+     */
+    public function post(string $url, array $options = []): array|Exception
     {
         try {
 
-            $request = $this->request('POST', $this->formatUrl($url), $params);
+            $request = $this->request('POST', $this->formatUrl($url), $options);
 
 
             return $this->parseResponse($request);
@@ -86,10 +95,14 @@ class Connection
         }
     }
 
-    public function patch(string $url, array $params = []): array|Exception
+    /**
+     * @param array<mixed> $options  
+     * @return array<mixed>|Exception 
+     */
+    public function patch(string $url, array $options = []): array|Exception
     {
         try {
-            $request = $this->client->patch($this->formatUrl($url), $params);
+            $request = $this->client->patch($this->formatUrl($url), $options);
 
             return $this->parseResponse($request);
         } catch (\GuzzleHttp\Exception\ClientException $e) {
@@ -97,10 +110,14 @@ class Connection
         }
     }
 
-    public function put(string $url, array $params = []): array|Exception
+    /**
+     * @param array<mixed> $options  
+     * @return array<mixed>|Exception 
+     */
+    public function put(string $url, array $options = []): array|Exception
     {
         try {
-            $request = $this->client->put($this->formatUrl($url), $params);
+            $request = $this->client->put($this->formatUrl($url), $options);
 
             return $this->parseResponse($request);
         } catch (\GuzzleHttp\Exception\ClientException $e) {
@@ -108,6 +125,7 @@ class Connection
         }
     }
 
+    /** @return array<mixed>|Exception */
     public function delete(string $url): array|Exception
     {
         try {
@@ -119,6 +137,7 @@ class Connection
         }
     }
 
+    /** @return array<mixed> $params */
     private function parseResponse(object $response): array
     {
         $response = $response->getBody()->getContents();
@@ -127,7 +146,7 @@ class Connection
             return [];
         }
 
-        return json_decode($response, true);
+        return (array) json_decode($response, true);
     }
 
     private function parseExceptionMessage(\GuzzleHttp\Exception\ClientException $e): string
@@ -135,6 +154,7 @@ class Connection
         $response = $e->getResponse();
         $responseBodyAsString = $response->getBody()->getContents();
 
+        /** @var object $responseBody */
         $responseBody = json_decode($responseBodyAsString);
 
         $message = $responseBody->message ?? $responseBodyAsString;
