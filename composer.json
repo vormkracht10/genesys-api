@@ -46,6 +46,13 @@
             "pestphp/pest-plugin": true
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Vormkracht10\\GenesysApi\\ServiceProvider\\GenesysProvider"
+            ]
+        }
+    },
     "minimum-stability": "dev",
     "prefer-stable": true
 }
