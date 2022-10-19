@@ -8,13 +8,15 @@ use Psr\Http\Message\ResponseInterface;
 
 class Connection
 {
-    public function __construct(
-        string|null $region,
-        private string $accessToken,
-        private Client $client,
-        public string $apiDomain = 'https://api.mypurecloud.com/api/v2',
-        public string $authDomain = 'https://login.mypurecloud.com',
-    )
+    private string $accessToken;
+
+    private Client $client;
+
+    public string $apiDomain = 'https://api.mypurecloud.com/api/v2';
+
+    public string $authDomain = 'https://login.mypurecloud.com';
+
+    public function __construct(string|null $region)
     {
         $this->setRegion($region);
         $this->client();
