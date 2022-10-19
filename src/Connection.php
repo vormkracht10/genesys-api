@@ -8,15 +8,13 @@ use Psr\Http\Message\ResponseInterface;
 
 class Connection
 {
-    private string $accessToken;
-
-    private Client $client;
-
-    public string $apiDomain = 'https://api.mypurecloud.com/api/v2';
-
-    public string $authDomain = 'https://login.mypurecloud.com';
-
-    public function __construct(string|null $region)
+    public function __construct(
+        string|null $region,
+        private string $accessToken,
+        private Client $client,
+        public string $apiDomain = 'https://api.mypurecloud.com/api/v2',
+        public string $authDomain = 'https://login.mypurecloud.com',
+    )
     {
         $this->setRegion($region);
         $this->client();
@@ -37,7 +35,7 @@ class Connection
         return $this->client;
     }
 
-    /** @param array<mixed> $options */
+    /** @param array<mixed> $params */
     private function request(string $method, string $url, array $params = []): ResponseInterface
     {
         $options['headers'] = array_merge(
