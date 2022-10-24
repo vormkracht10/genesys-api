@@ -47,8 +47,8 @@ class Connection
             ]
         );
 
-        if (!empty($params)) {
-            $options['body'] = json_encode($params);        
+        if (! empty($params)) {
+            $options['body'] = json_encode($params);
         }
 
         return $this->client->request(
