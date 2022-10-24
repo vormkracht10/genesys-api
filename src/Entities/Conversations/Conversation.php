@@ -3,9 +3,15 @@
 namespace Vormkracht10\GenesysApi\Entities\Conversations;
 
 use Vormkracht10\GenesysApi\Entities\Model;
+use Vormkracht10\GenesysApi\Entities\Emails\Email;
 
 class Conversation extends Model
 {
+    public function emails(array $attributes = [])
+    {
+        return new Email($this->connection, $attributes);
+    }
+
     public function get(string $id, array $params = []): array
     {
         $url = $this->replaceParameters(
@@ -89,15 +95,15 @@ class Conversation extends Model
         return $this->connection()->put($url, $params);
     }
 
-    public function emails(string $id): array
-    {
-        $url = $this->replaceParameters(
-            endpoint: Endpoints::EMAILS,
-            params: ['conversationId' => $id]
-        );
+    // public function emails(string $id): array
+    // {
+    //     $url = $this->replaceParameters(
+    //         endpoint: Endpoints::EMAILS,
+    //         params: ['conversationId' => $id]
+    //     );
 
-        return $this->connection()->get($url);
-    }
+    //     return $this->connection()->get($url);
+    // }
 
     public function updateAttributes(string $conversationId, string $participantId, array $params): array
     {
