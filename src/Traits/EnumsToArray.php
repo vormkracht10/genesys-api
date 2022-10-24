@@ -1,8 +1,9 @@
-<?php 
+<?php
 
 namespace Vormkracht10\GenesysApi\Traits;
 
-trait EnumsToArray {
+trait EnumsToArray
+{
     public static function names(): array
     {
         return array_column(self::cases(), 'name');

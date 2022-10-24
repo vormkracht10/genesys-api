@@ -7,6 +7,6 @@ use Vormkracht10\GenesysApi\Traits\EnumsToArray;
 enum Endpoints: string
 {
     use EnumsToArray;
-    
+
     case GET = 'conversations/emails/{conversationId}';
 }

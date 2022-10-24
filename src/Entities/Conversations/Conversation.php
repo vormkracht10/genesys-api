@@ -2,8 +2,8 @@
 
 namespace Vormkracht10\GenesysApi\Entities\Conversations;
 
-use Vormkracht10\GenesysApi\Entities\Model;
 use Vormkracht10\GenesysApi\Entities\Emails\Email;
+use Vormkracht10\GenesysApi\Entities\Model;
 
 class Conversation extends Model
 {

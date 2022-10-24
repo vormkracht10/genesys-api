@@ -5,8 +5,8 @@ namespace Vormkracht10\GenesysApi\Entities;
 use Vormkracht10\GenesysApi\Connection;
 use Vormkracht10\GenesysApi\Entities\Conversations\Conversation;
 use Vormkracht10\GenesysApi\Entities\Conversations\Endpoints as ConversationEndpoints;
-use Vormkracht10\GenesysApi\Entities\Emails\Endpoints as EmailEndpoints;
 use Vormkracht10\GenesysApi\Entities\Emails\Email;
+use Vormkracht10\GenesysApi\Entities\Emails\Endpoints as EmailEndpoints;
 
 class Model
 {
